@@ -8,6 +8,7 @@ cd
 
 if [ ! -d dotfiles ]
 then
+  sudo apt-get install git
   git clone --recursive https://github.com/aarongable/dotfiles.git
 fi
 
