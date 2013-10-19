@@ -8,7 +8,7 @@ cd
 
 if [ ! -d dotfiles ]
 then
-  git clone https://github.com/aarongable/dotfiles.git
+  git clone --recursive https://github.com/aarongable/dotfiles.git
 fi
 
 # Simply invokes the install script for each section of this repo.
