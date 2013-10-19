@@ -6,3 +6,7 @@
 	path = zsh/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 	branch = master
+[submodule "vim/vimified"]
+	path = vim/vimified
+	url = https://github.com/zaiste/vimified.git
+	branch = master
