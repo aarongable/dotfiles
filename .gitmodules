@@ -1,0 +1,8 @@
+[submodule "zsh/custom/zsh-syntax-highlighting"]
+	path = zsh/custom/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+	branch = master
+[submodule "zsh/oh-my-zsh"]
+	path = zsh/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+	branch = master
