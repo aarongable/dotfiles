@@ -1,14 +1,18 @@
-[submodule "zsh/custom/zsh-syntax-highlighting"]
-	path = zsh/custom/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-	branch = master
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 	branch = master
+[submodule "zsh/custom/zsh-syntax-highlighting"]
+	path = zsh/custom/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+	branch = master
 [submodule "vim/vimified"]
 	path = vim/vimified
 	url = https://github.com/zaiste/vimified.git
+	branch = master
+[submodule "vim/vundle"]
+	path = vim/vundle
+	url = https://github.com/gmarik/vundle.git
 	branch = master
 [submodule "powerline"]
 	path = powerline
