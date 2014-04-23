@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# This script sets up the entire dotfiles environment.
+# Note: This script (and entire repo) is only expected to work on Ubuntu.
+
 cd
 
 # If the repo hasn't been cloned already (i.e. you trust me and are running
