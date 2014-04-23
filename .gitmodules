@@ -10,3 +10,7 @@
 	path = vim/vimified
 	url = https://github.com/zaiste/vimified.git
 	branch = master
+[submodule "powerline"]
+	path = powerline
+	url = https://github.com/Lokaltog/powerline
+	branch = master
