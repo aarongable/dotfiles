@@ -15,6 +15,10 @@ then
   git clone --recursive https://github.com/aarongable/dotfiles.git
 fi
 
+# Ensure all of the submodules are properly set up
+git submodule init
+git submodule update
+
 # Simply invokes the install script for each section of this repo.
 
 dirs=$(find dotfiles -maxdepth 1 -mindepth 1 -type d -not -name '.git' -print)
