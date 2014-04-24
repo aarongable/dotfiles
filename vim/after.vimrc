@@ -43,6 +43,8 @@ set mouse=a             "enable mouse
 set wildmenu            "enable fun tab-complete prettyness
 set wildmode=list:longest,full
 set clipboard+=unnamed  "yanking automatically uses system clipboard
+set splitbelow
+set splitright
 
 " Tabs
 set autoindent          " always set autoindenting on

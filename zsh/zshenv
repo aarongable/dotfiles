@@ -1,5 +1,15 @@
 # ~/.zshenv: executed by the command interpreter for all shells
 
+# Fix gnome-terminal color support
+if [[ "$COLORTERM" == "gnome-terminal" ]] ; then
+  if [[ "$TERM" == "xterm" ]] ; then
+    TERM="xterm-256color"
+  elif [[ "$TERM" == "screen" ]] ; then
+    TERM="screen-256color"
+  fi
+fi
+
+# Make sure everyone knows I use vim
 EDITOR=`which vim`
 VISUAL=`which vim`
 
@@ -11,3 +21,6 @@ fi
 PATH="$HOME/bin/depot_tools:$PATH"
 PATH="$HOME/bin/gsutil:$PATH"
 PATH="$HOME/bin/google_appengine:$PATH"
+
+MANPATH=":$HOME/bin/depot_tools/docs"
+export MANPATH

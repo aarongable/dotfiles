@@ -3,6 +3,7 @@ Bundle 'bling/vim-bufferline'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'ehamberg/vim-cute-python'
+Bundle 'christoomey/vim-tmux-navigator'
 
 " Editing
 Bundle 'tpope/vim-surround'
