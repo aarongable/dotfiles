@@ -14,7 +14,7 @@
 	path = vim/vundle
 	url = https://github.com/gmarik/vundle.git
 	branch = master
-[submodule "powerline"]
-	path = powerline
-	url = https://github.com/Lokaltog/powerline
+[submodule "tmux/tmux-powerline"]
+	path = tmux/tmux-powerline
+	url = https://github.com/erikw/tmux-powerline
 	branch = master
