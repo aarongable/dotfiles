@@ -22,10 +22,12 @@ alias     rsync='rsync -vhuP'
 
 # start a new named tmux session
 alias     ts='tmux new-session -s'
-# attach a new tmux session to the windows from the named one
-alias     tt='tmux new-session -t'
+# attach to an old session
+alias     ta='tmux attach-session -t'
 # steal a session for where it is attached elsewhere
 alias     td='tmux attach-session -d -t'
+# attach a new tmux session to the windows from the named one
+alias     tt='tmux new-session -t'
 # list all currently running tmux sessions
 alias     tls='tmux list-sessions'
 
