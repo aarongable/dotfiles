@@ -1,5 +1,4 @@
 " UI
-Bundle 'bling/vim-bufferline'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'ehamberg/vim-cute-python'

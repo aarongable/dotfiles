@@ -2,6 +2,7 @@ set t_Co=256                          " Tell Vim the terminal supports 256 color
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:NERDSpaceDelims = 1             " Put a space after NERDComments.
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn\|review$',
