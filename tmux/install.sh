@@ -2,4 +2,4 @@
 
 sudo apt-get install tmux
 
-ln -sf ~/dotfiles/zsh/tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
