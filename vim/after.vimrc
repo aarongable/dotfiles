@@ -18,6 +18,8 @@ nmap <leader>t :TagbarToggle<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:easytags_file = '~/.vim/tags'
+let g:easytags_auto_highlight = 0
+let g:easytags_updatetime_warn = 0
 
 set backspace=indent,eol,start
 
