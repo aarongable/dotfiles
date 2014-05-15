@@ -1,3 +1,5 @@
+filetype off
+
 set t_Co=256                          " Tell Vim the terminal supports 256 colors.
 set laststatus=2
 let g:airline_powerline_fonts = 1
@@ -20,6 +22,9 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:easytags_file = '~/.vim/tmp/tags'
 let g:easytags_auto_highlight = 0
 let g:easytags_updatetime_warn = 0
+let g:indentLine_char = '│'
+let g:pymode_indent = 0
+let g:pymode_rope = 0
 
 set backspace=indent,eol,start
 
@@ -51,7 +56,7 @@ set splitright
 
 " Tabs
 set autoindent          " always set autoindenting on
-set et sts=2 sw=2       "set tab defaults
+set et ts=2 sts=2 sw=2  "set tab defaults
 
 " Coloring
 colorscheme hybrid
@@ -74,7 +79,6 @@ set hidden              "allow switching buffers without saving
 set textwidth=80
 set colorcolumn=+1
 set encoding=utf-8
-set tags=./tags;
 
 " Folding stuff
 augroup AutoFold
