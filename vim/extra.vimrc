@@ -5,7 +5,6 @@ Bundle 'ehamberg/vim-cute-python'
 Bundle 'christoomey/vim-tmux-navigator'
 
 " Editing
-Bundle 'tpope/vim-surround'
 Bundle 'Raimondi/delimitMate'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'hynek/vim-python-pep8-indent'
