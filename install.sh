@@ -3,6 +3,7 @@
 # This script sets up the entire dotfiles environment.
 # Note: This script (and entire repo) is only expected to work on Ubuntu.
 
+SAVED_DIR=$PWD
 cd
 
 # If the repo hasn't been cloned already (i.e. you trust me and are running
@@ -12,8 +13,10 @@ cd
 if [ ! -d dotfiles ]
 then
   sudo apt-get install git
-  git clone --recursive https://github.com/aarongable/dotfiles.git
+  git clone --recursive https://github.com/aarongable/dotfiles
 fi
+
+cd dotfiles
 
 # Ensure all of the submodules are properly set up
 git submodule init
@@ -21,9 +24,11 @@ git submodule update
 
 # Simply invokes the install script for each section of this repo.
 
-dirs=$(find dotfiles -maxdepth 1 -mindepth 1 -type d -not -name '.git' -print)
+dirs=$(find . -maxdepth 1 -mindepth 1 -type d -not -name '.git' -print)
 for dir in $dirs
 do
   echo "Installing ${dir}..."
   $dir/install.sh
 done
+
+cd $SAVED_DIR
