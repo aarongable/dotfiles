@@ -26,7 +26,7 @@ modules
 Each subdirectory of this repo represents a collection of dotfiles corresponding
 to a single application. The top-level install script invokes a smaller install
 script within each of these directories that is responsible for setting up that
-particular program. In general, each directory-level install script 
+particular program. In general, each directory-level install script
 
 1. Installs any necessary system packages (assumes you're using apt, sorry);
 2. Clones any necessary git repositories; and
@@ -42,6 +42,14 @@ customizations and ease-of-use improvements. Thanks to [riannucci][] for most of
 the contributions.
 
 [riannucci]: https://github.com/riannucci/vimified
+
+irssi
+-----
+
+Contains simple configuration for my irssi setup. This is probably the least
+relevant portion of my setup to other people -- it contains configuration
+stating which networks and channels I care about, and what username I use on
+them -- but it is still a good template for others to use.
 
 misc
 ----
