@@ -17,7 +17,7 @@ nmap <leader>ls :NERDTreeToggle<CR>
 nmap <leader>t :TagbarToggle<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:easytags_file = '~/.vim/tags'
+let g:easytags_file = '~/.vim/tmp/tags'
 let g:easytags_auto_highlight = 0
 let g:easytags_updatetime_warn = 0
 
@@ -25,11 +25,11 @@ set backspace=indent,eol,start
 
 " Swap, backup, and undo directories
 " Double trailing slash makes vim use full path/to/file
-set directory=~/.vim/swap//
+set directory=~/.vim/tmp/swap//
 set backup
-set backupdir=~/.vim/backup//
+set backupdir=~/.vim/tmp/backup//
 set undofile
-set undodir=~/.vim/undo//
+set undodir=~/.vim/tmp/undo//
 
 " History
 set history=50          " keep 50 lines of command line history
