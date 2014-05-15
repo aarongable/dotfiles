@@ -81,8 +81,10 @@ runs BundleInstall.
 xmonad
 ------
 
-Symlinks the xmonad haskell configuration file into place and builds
-the xmonad binary for use the next time the X session is restarted.
+Installs all of the dependencies of my xmonad system, including old-style gnome
+and the Haskell compiler. Then symlinks the xmonad haskell configuration file
+into place and builds the xmonad binary for use the next time the X session is
+restarted.
 
 zsh
 ---

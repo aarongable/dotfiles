@@ -2,7 +2,11 @@
 # Intended for use with Ubuntu 12.04 LTS.
 
 sudo apt-get install xmonad gnome-panel suckless-tools
-rm ~/.xmonad/xmonad-x86_64-linux
+
+mkdir -p ~/.xmonad
+ln -sf ~/dotfiles/xmonad/xmonad.hs ~/.xmonad/xmonad.hs
+
+rm -f ~/.xmonad/xmonad-x86_64-linux
 xmonad --recompile
 #logout
 #Ubuntu -> Gnome with Xmonad -> login
