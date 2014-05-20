@@ -2,7 +2,14 @@ filetype off
 
 set t_Co=256                          " Tell Vim the terminal supports 256 colors.
 set laststatus=2
-let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols = {}
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:NERDSpaceDelims = 1             " Put a space after NERDComments.
@@ -22,9 +29,11 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:easytags_file = '~/.vim/tmp/tags'
 let g:easytags_auto_highlight = 0
 let g:easytags_updatetime_warn = 0
-let g:indentLine_char = '│'
-let g:pymode_indent = 0
-let g:pymode_rope = 0
+let g:pymode = 0
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_color = 0
+let g:syntastic_mode_map = {'mode': 'passive'}
+
 
 set backspace=indent,eol,start
 
@@ -60,6 +69,7 @@ set et ts=2 sts=2 sw=2  "set tab defaults
 
 " Coloring
 colorscheme hybrid
+set background=light
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -71,6 +81,9 @@ endif
 " highlight ColorColumn ctermbg=DarkMagenta
 " highlight SpecialKey ctermfg=DarkMagenta
 highlight clear SignColumn
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=darkgrey ctermfg=darkgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black ctermfg=black
+
 " since # searches for current word, \# clears searches
 nnoremap <leader># :let @/ = ""<CR>
 

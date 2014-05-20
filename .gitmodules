@@ -18,3 +18,7 @@
 	path = tmux/tmux-powerline
 	url = https://github.com/erikw/tmux-powerline
 	branch = master
+[submodule "powerline/powerline-fonts"]
+	path = powerline/powerline-fonts
+	url = https://github.com/Lokaltog/powerline-fonts
+	branch = master
