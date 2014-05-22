@@ -128,7 +128,8 @@ myKeys = \conf -> mkKeymap conf $
                                 -- colors chosen to match Ubuntu 12.04
   , ("M-S-<Return>",    spawn $ "dmenu_run -nb '#2C001E' -nf '#AEA79F'"
                                         ++ " -sb '#AEA79F' -sf '#2C001E'"
-                                        ++ " -l 4 -m 1")
+                                        ++ " -l 4")
+  , ("<Print>",         spawn $ "gnome-screenshot --interactive")
   ]
 
   -- XMonad system
@@ -194,5 +195,5 @@ keyWs k = snd . head $ filter ((==k) . fst) myWsMap
 -- Maps input keys to corresponding number or function workspaces
 numKeyWs k = keyWs $ myNumKeys !! modIndex k
 funKeyWs k = keyWs $ myFunKeys !! modIndex k
-modIndex k = M.fromJust (L.elemIndex k myWsKeys) `mod` 10 
+modIndex k = M.fromJust (L.elemIndex k myWsKeys) `mod` 10
 
