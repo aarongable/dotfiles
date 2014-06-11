@@ -50,6 +50,7 @@ main = xmonad $ defaultConfig
   , layoutHook          = myLayoutHook
   , manageHook          = myManageHook
   , keys                = myKeys
+  , borderWidth         = myBorderWidth
   , normalBorderColor   = myInactiveBorderColor
   , focusedBorderColor  = myActiveBorderColor
   }
@@ -129,6 +130,7 @@ myKeys = \conf -> mkKeymap conf $
   , ("M-S-<Return>",    spawn $ "dmenu_run -nb '#2C001E' -nf '#AEA79F'"
                                         ++ " -sb '#AEA79F' -sf '#2C001E'"
                                         ++ " -l 4")
+  , ("<F12>",           spawn $ "gnome-screensaver-command --lock")
   , ("<Print>",         spawn $ "gnome-screenshot --interactive")
   ]
 
@@ -164,7 +166,8 @@ myKeys = \conf -> mkKeymap conf $
 
 -- | Colors
 myActiveBorderColor = "red"
-myInactiveBorderColor = "black"
+myInactiveBorderColor = "#111111"
+myBorderWidth = 1
 
 
 -- | Helper functions
