@@ -7,20 +7,13 @@
 [color]
   ui = true
 [alias]
-  udiff  = !git diff $(git merge-base @{u} HEAD) --patience --word-diff=color --word-diff-regex='\\w+|[^[:space:]]' -C -C
-  map    = !git log --graph --full-history --branches --tags --remotes --color --date=short --pretty=format:'%C(red bold)%h%x09%Creset%C(green)%d%Creset %C(yellow)%ad%Creset ~ %s' $(git config iannucci.mapextra 2> /dev/null) "$@" | ~/dotfiles/git/gitscripts/pylog.py | less || true
-  reup   = !~/dotfiles/git/gitscripts/reup.py
-  squash = !~/dotfiles/git/gitscripts/squash.py
-  freeze = commit -am 'FREEZE'
-  thaw   = !((git log --pretty=%s -n1 | grep FREEZE -q) && git reset 'HEAD~') || echo 'Nothing to thaw.'
   co     = checkout
   root   = checkout origin/master
-  nb     = checkout --track origin/master -b
-  tb     = checkout -tb
-  rp     = !~/dotfiles/git/gitscripts/rp.py
-  rpr    = !~/dotfiles/git/gitscripts/rp.py origin/master
-  mbt    = !~/dotfiles/git/gitscripts/mbt.py
-  number = !~/dotfiles/git/gitscripts/number.py
-  rename = !~/dotfiles/git/gitscripts/rename.py
+  # These are all great git helper commands from Chromium's depot_tools
+  reup   = rebase-update
+  udiff  = upstream-diff
+  bmap   = map-branches
+  nb     = new-branch
+  tb     = new-branch --upstream_current
 [push]
   default = upstream
