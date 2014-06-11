@@ -1,7 +1,10 @@
 filetype off
 
+let mapleader = '\'
+
 set t_Co=256                          " Tell Vim the terminal supports 256 colors.
 set laststatus=2
+
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -30,8 +33,6 @@ let g:easytags_file = '~/.vim/tmp/tags'
 let g:easytags_auto_highlight = 0
 let g:easytags_updatetime_warn = 0
 let g:pymode = 0
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_color = 0
 let g:syntastic_mode_map = {'mode': 'passive'}
 
 
@@ -85,7 +86,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=darkgrey ctermfg=dar
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black ctermfg=black
 
 " since # searches for current word, \# clears searches
-nnoremap <leader># :let @/ = ""<CR>
+nmap <leader># :let @/ = ""<CR>
 
 " Other simple settings
 set hidden              "allow switching buffers without saving

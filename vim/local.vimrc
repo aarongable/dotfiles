@@ -1,4 +1,4 @@
-let g:vimified_packages = ['general', 'fancy', 'indent', 'os', 'coding', 'python', 'color']
+let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'color']
 
 " Note: this is equivalent to:
 " Note note: this list may become out of date; check vimified.
@@ -24,8 +24,6 @@ let g:vimified_packages = ['general', 'fancy', 'indent', 'os', 'coding', 'python
 "   Bundle 'terryma/vim-multiple-cursors'
 "
 "   Bundle 'bling/vim-airline'
-"
-"   Bundle 'Yggdroot/indentLine'
 "
 "   Bundle 'zaiste/tmux.vim'
 "   Bundle 'benmills/vimux'
