@@ -33,6 +33,7 @@ let g:easytags_file = '~/.vim/tmp/tags'
 let g:easytags_auto_highlight = 0
 let g:easytags_updatetime_warn = 0
 let g:pymode = 0
+let g:pymode_indent = 0
 let g:syntastic_mode_map = {'mode': 'passive'}
 
 

@@ -7,7 +7,8 @@ Bundle 'christoomey/vim-tmux-navigator'
 " Editing
 Bundle 'Raimondi/delimitMate'
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'hynek/vim-python-pep8-indent'
+Bundle 'aarongable/vim-python-indent'
+Bundle 'jnwhiteh/vim-golang.git'
 
 " Tools
 Bundle 'Lokaltog/vim-easymotion'
