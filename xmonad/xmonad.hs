@@ -14,13 +14,13 @@ import System.Exit
 import System.IO
 
 -- Imports for various layouts
+import XMonad.Actions.WindowNavigation
 import XMonad.Layout hiding ((|||))
 import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
-import XMonad.Layout.WindowNavigation
 
 -- Imports for desktop management
 import XMonad.Hooks.ManageDocks
@@ -42,18 +42,20 @@ import XMonad.Actions.CycleWS
 
 
 -- | Main config
-main = xmonad $ defaultConfig
-  { terminal            = myTerminal
-  , modMask             = mod4Mask
-  , focusFollowsMouse   = False
-  , workspaces          = myWorkspaces
-  , layoutHook          = myLayoutHook
-  , manageHook          = myManageHook
-  , keys                = myKeys
-  , borderWidth         = myBorderWidth
-  , normalBorderColor   = myInactiveBorderColor
-  , focusedBorderColor  = myActiveBorderColor
+main = do
+  config <- withWindowNavigation (xK_k, xK_h, xK_j, xK_l) $ defaultConfig {
+      terminal            = myTerminal
+    , modMask             = mod4Mask
+    , focusFollowsMouse   = False
+    , workspaces          = myWorkspaces
+    , layoutHook          = myLayoutHook
+    , manageHook          = myManageHook
+    , keys                = myKeys
+    , borderWidth         = myBorderWidth
+    , normalBorderColor   = myInactiveBorderColor
+    , focusedBorderColor  = myActiveBorderColor
   }
+  xmonad config
 
 
 -- | Terminal
@@ -72,7 +74,7 @@ myFunKeys = map (\n -> "<F"++n++">") (map show [1..10])
 -- | Layouts
 -- windowNavigation for M-[hjkl] movement
 -- avoidStrutsOn [] to get toggleStruts, but hiding panels by default
-myLayoutHook = windowNavigation $ avoidStrutsOn []
+myLayoutHook = avoidStrutsOn []
   ( two ||| Mirror two ||| ThreeCol 1 (3/100) (1/3) ||| spiral (1) ||| simpleTabbed )
     where two = ResizableTall 1 (3/100) (1/2) []
 
@@ -86,18 +88,14 @@ myManageHook = composeAll
 
 -- | Keyboard shortcuts
 myKeys = \conf -> mkKeymap conf $
-  -- Window Navigation
-  [ ("M-h",             sendMessage $ Go L)
-  , ("M-j",             sendMessage $ Go D)
-  , ("M-k",             sendMessage $ Go U)
-  , ("M-l",             sendMessage $ Go R)
-  , ("M-m",             windows W.focusMaster)
+  -- Most window movement is handed by XMonad.Actions.WindowNavigation
+  [
+  -- Navigate down/up the window stack (useful in tabbed layout)
+    ("M-<Tab>",         windows W.focusDown)
+  , ("M-S-<Tab>",       windows W.focusUp  )
 
-  -- Window Movement
-  , ("M-S-h",           sendMessage $ Swap L)
-  , ("M-S-j",           sendMessage $ Swap D)
-  , ("M-S-k",           sendMessage $ Swap U)
-  , ("M-S-l",           sendMessage $ Swap R)
+  -- Managing master panes.
+  , ("M-m",             windows W.focusMaster)
   , ("M-S-m",           windows W.swapMaster)
 
   -- Drop floating window back into tiling
@@ -149,11 +147,9 @@ myKeys = \conf -> mkKeymap conf $
   | (key, sc) <- zip ["y", "u", "o", "i"] [0, 0, 1, 1]
   , (m, f) <- [("M-", W.view), ("M-S-", W.shift)]
   ]
-  -- alt-tab for monitors and workspaces, via CycleWS
+  -- alt-tab for workspaces, via CycleWS
   ++
-  [ ("M-<Tab>",         nextScreen)
-  , ("M-S-<Tab>",       shiftNextScreen >> nextScreen)
-  , ("M-`",             toggleWS)
+  [ ("M-`",             toggleWS)
   ]
 
   -- Unified workspace shifting
@@ -174,7 +170,7 @@ myBorderWidth = 1
 -- let bools be stored in persistent storage
 data WsPairState = WsPairState Bool deriving (Typeable, Read, Show)
 instance ExtensionClass WsPairState where
-  initialValue  = WsPairState False
+  initialValue  = WsPairState True
   extensionType = PersistentExtension
 
 -- toggle the state of the stored bool

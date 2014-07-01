@@ -11,6 +11,8 @@ xmonad --recompile
 #logout
 #Ubuntu -> Gnome with Xmonad -> login
 
+ln -sf ~/dotfiles/xmonad/xession ~/.xsession
+
 # Tips:
 # Win+Enter = new terminal
 # Win+Shift+Enter = launcher (start typing name of program, press enter)
