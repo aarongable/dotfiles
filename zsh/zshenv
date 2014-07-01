@@ -13,14 +13,22 @@ fi
 EDITOR=`which vim`
 VISUAL=`which vim`
 
-# set PATH so it includes user's private bin if it exists
+######
+# Everything below here must be exported.
+#####
+
+GOPATH="$HOME/go"
+
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
+PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/bin/depot_tools:$PATH"
 PATH="$HOME/bin/gsutil:$PATH"
 PATH="$HOME/bin/google_appengine:$PATH"
 
 MANPATH=":$HOME/bin/depot_tools/docs"
+
+export GOPATH
 export MANPATH
+export PATH
