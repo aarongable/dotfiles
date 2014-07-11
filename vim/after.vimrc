@@ -94,6 +94,7 @@ set hidden              "allow switching buffers without saving
 set textwidth=80
 set colorcolumn=+1
 set encoding=utf-8
+set nojoinspaces
 
 " Folding stuff
 augroup AutoFold
