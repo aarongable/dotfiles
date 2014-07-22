@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo apt-get install zsh
+sudo apt-get install zsh autojump
 sudo chsh /bin/zsh
 
 ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
