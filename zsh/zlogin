@@ -1,2 +1,9 @@
-xcompmgr &
-hsetroot -solid "#2C001E"
+if [[ $TERM != "screen-256color" ]]; then
+  xcompmgr &
+  hsetroot -solid "#2C001E"
+fi
+
+tmux_pid=`ps -o pid= -C tmux`
+if [[ $? -ne 0 ]]
+  nohup tmux start
+fi
