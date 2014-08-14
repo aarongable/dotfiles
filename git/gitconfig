@@ -1,7 +1,7 @@
 # vim: ft=gitconfig:
 [user]
   name = Aaron Gable
-  email = aarongable@gmail.com
+  email = agable@chromium.org
 [core]
   excluesfile = ~/dotfiles/git/gitignore
 [color]

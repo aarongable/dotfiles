@@ -4,6 +4,6 @@ if [[ $TERM != "screen-256color" ]]; then
 fi
 
 tmux_pid=`ps -o pid= -C tmux`
-if [[ $? -ne 0 ]]
+if [[ $? -ne 0 ]]; then
   nohup tmux start
 fi

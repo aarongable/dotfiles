@@ -29,8 +29,8 @@ import System.IO
 import XMonad.Actions.Navigation2D
 
 -- Imports for various layouts
-import XMonad.Layout hiding ((|||))
 import XMonad.Layout.LayoutCombinators
+import XMonad.Layout.Renamed
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Tabbed
@@ -53,7 +53,7 @@ import XMonad.Actions.OnScreen
 
 
 -- | Main config
-main = xmonad $ withNavigation2DConfig defaultNavigation2DConfig
+main = xmonad $ withNavigation2DConfig myNavigation2DConfig
               $ defaultConfig
   { terminal            = myTerminal
   , modMask             = myModMask
@@ -86,9 +86,11 @@ myFunKeys = map (\n -> "<F"++n++">") (map show [1..10])
 -- | Layouts
 -- windowNavigation for M-[hjkl] movement
 -- avoidStrutsOn [] to get toggleStruts, but hiding panels by default
-myLayoutHook = avoidStrutsOn []
-  ( two ||| Mirror two ||| ThreeCol 1 (3/100) (1/3) |||  simpleTabbed )
-    where two = ResizableTall 1 (3/100) (1/2) []
+myLayoutHook = avoidStrutsOn [] ( twocol ||| tworow  ||| threecol ||| tabbed )
+    where twocol = renamed [Replace "twocol"] $ ResizableTall 1 (3/100) (1/2) []
+          tworow = renamed [Replace "tworow"] $ Mirror twocol
+          threecol = renamed [Replace "threecol"] $ ThreeCol 1 (3/100) (1/3)
+          tabbed = renamed [Replace "tabbed"] $ simpleTabbed
 
 
 -- | Management
@@ -104,7 +106,7 @@ myNavKeys2 = ["y", "i", "o", "p"]
 myNavDirs = [L, D, U, R]
 
 myNavigation2DConfig = defaultNavigation2DConfig {
-
+  layoutNavigation = [("tabbed", centerNavigation)]
 }
 
 myKeys = \conf -> mkKeymap conf $
@@ -175,6 +177,8 @@ myKeys = \conf -> mkKeymap conf $
 -- | Colors
 myActiveBorderColor = "red"
 myInactiveBorderColor = "#111111"
+ubuntuBackgroundColor = "#2C001E"
+ubuntuForegroundColor = "$AEA79F"
 myBorderWidth = 1
 
 

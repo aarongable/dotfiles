@@ -26,7 +26,7 @@ chatnets = {
 
 channels = (
   { name = "#chromium"; chatnet = "Freenode"; autojoin = "Yes"; },
-  { 
+  {
     name = "#chromium-support";
     chatnet = "Freenode";
     autojoin = "Yes";
@@ -275,6 +275,6 @@ windows = {
   5 = { name = "hilight"; sticky = "yes"; };
 };
 mainwindows = {
-  1 = { first_line = "8"; lines = "43"; };
   5 = { first_line = "1"; lines = "7"; };
+  1 = { first_line = "8"; lines = "43"; };
 };
