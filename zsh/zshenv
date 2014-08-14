@@ -32,3 +32,6 @@ MANPATH=":$HOME/bin/depot_tools/docs"
 export GOPATH
 export MANPATH
 export PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/usr/local/google/home/agable/bin/google-cloud-sdk/path.zsh.inc'
