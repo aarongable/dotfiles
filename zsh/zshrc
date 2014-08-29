@@ -45,6 +45,8 @@ fi
 
 # Vim FTW.
 bindkey -a 'v' edit-command-line
+bindkey '' backward-delete-char
+bindkey '' backward-kill-word
 
 # Autocompletion for commands in the Chromium infra repositories.
 autoload -Uz bashcompinit compinit

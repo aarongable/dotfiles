@@ -1,5 +1,6 @@
-if [[ $TERM != "screen-256color" ]]; then
-  xcompmgr &
+xcompmgr_pid=`ps -o pid= -C xcompmgr`
+if [[ $? -ne 0 ]]; then
+  xcompmgr -a &
   hsetroot -solid "#2C001E"
 fi
 
