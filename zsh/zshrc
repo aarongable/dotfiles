@@ -51,8 +51,8 @@ bindkey '' backward-kill-word
 # Autocompletion for commands in the Chromium infra repositories.
 autoload -Uz bashcompinit compinit
 bashcompinit
-eval "$(/work/git/infra/infra/ENV/bin/register-python-argcomplete run.py)"
-eval "$(/work/git/infra/infra/ENV/bin/register-python-argcomplete test.py)"
+eval "$($HOME/work/infra/infra/ENV/bin/register-python-argcomplete run.py)"
+eval "$($HOME/work/infra/infra/ENV/bin/register-python-argcomplete test.py)"
 
 # The next line enables bash completion for gcloud.
-source '/usr/local/google/home/agable/bin/google-cloud-sdk/completion.zsh.inc'
+source "$HOME/bin/google-cloud-sdk/completion.zsh.inc"
