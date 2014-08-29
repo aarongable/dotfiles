@@ -221,12 +221,8 @@ settings = {
   };
 };
 hilights = (
-  {
-    text = "(?i)(agable|trooper)";
-    nick = "yes";
-    word = "yes";
-    regexp = "yes";
-  }
+  { text = "agable"; nick = "yes"; },
+  { text = "trooper"; }
 );
 keyboard = (
   { key = "alt+j"; id = "command"; data = "nicklist scroll +10"; },
