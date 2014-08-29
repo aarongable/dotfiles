@@ -1,7 +1,7 @@
 #!/bin/sh
 
 sudo apt-get install zsh autojump
-sudo chsh /bin/zsh
+sudo chsh -s /usr/bin/zsh
 
 ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
 ln -sf ~/dotfiles/zsh/zshenv ~/.zshenv
