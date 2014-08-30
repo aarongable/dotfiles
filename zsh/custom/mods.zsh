@@ -1,10 +1,10 @@
 # cd mods
 cd() {
   builtin cd $1;
-  ls; 
+  ls;
 }
 
-source /usr/share/autojump/autojump.sh
+source /usr/share/autojump/autojump.zsh
 
 rdtun() {
   ssh agable@ssh.chromium.org -L3389:$1.golo.chromium.org:3389
