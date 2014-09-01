@@ -37,6 +37,7 @@ import XMonad.Layout.Tabbed
 
 -- Imports for desktop management
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.Place
 
 -- For special extensions and TODOs
 -- * for storing state, specifically the screen pairing boolean
@@ -94,10 +95,13 @@ myLayoutHook = avoidStrutsOn [] ( twocol ||| tworow  ||| threecol ||| tabbed )
 
 
 -- | Management
-myManageHook = composeAll [
+myManageHook = composeAll $ reverse [
     className =? "Xmessage" --> doFloat
+  , appName =? "crx_nckgahadagoaajjgafhacjanaoiihapd" --> placeHook chatPlacement <+> doFloat
   , manageDocks
   ]
+
+chatPlacement = withGaps (1,32,1,32) (smart (1,1))
 
 
 -- | Keyboard shortcuts
