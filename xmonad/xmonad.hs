@@ -97,7 +97,7 @@ myLayoutHook = avoidStrutsOn [] ( twocol ||| tworow  ||| threecol ||| tabbed )
 -- | Management
 myManageHook = composeAll $ reverse [
     className =? "Xmessage" --> doFloat
-  , appName =? "crx_nckgahadagoaajjgafhacjanaoiihapd" --> placeHook chatPlacement <+> doFloat
+  , appName =? "crx_nckgahadagoaajjgafhacjanaoiihapd" --> doShift "10" <+> placeHook chatPlacement <+> doFloat
   , manageDocks
   ]
 
