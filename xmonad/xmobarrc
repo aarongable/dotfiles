@@ -1,4 +1,4 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-18-*-*-*-*-*-*-*"
+Config { font = "xft:Ubuntu Mono derivative Powerline-14"
        , bgColor = "black"
        , fgColor = "grey"
        , position = Top
@@ -15,5 +15,5 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-18-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=red><</fc> %wlan0wi% <fc=red><</fc> %battery% <fc=red><</fc> <fc=orange>%date%</fc>"
+       , template = "%StdinReader% }{ <fc=red></fc> %wlan0wi% <fc=red></fc> %battery% <fc=red></fc> <fc=orange>%date%</fc>"
 }
