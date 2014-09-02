@@ -15,35 +15,29 @@ My personal XMonad configuration, intended to run standalone on Ubuntu 14.04.
 -- | Imports
 import XMonad hiding ((|||))
 
--- Basic data types
-import qualified Data.List as L
-import qualified Data.Maybe as M
-
--- Utils
-import qualified XMonad.StackSet as W
-import XMonad.Util.EZConfig
 import System.Exit
 import System.IO
 
--- Actions
 import XMonad.Actions.Navigation2D
+import XMonad.Actions.OnScreen
 
--- Imports for various layouts
-import XMonad.Layout.LayoutCombinators
-import XMonad.Layout.Renamed
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.ThreeColumns
-import XMonad.Layout.Tabbed
-
--- Imports for desktop management
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.Place
 
--- For special extensions and TODOs
--- * for storing state, specifically the screen pairing boolean
+import XMonad.Layout.LayoutCombinators
+import XMonad.Layout.Renamed
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.Tabbed
+import XMonad.Layout.ThreeColumns
+
+import XMonad.Util.EZConfig
+import XMonad.Util.Run
+
+import qualified Data.List as L
+import qualified Data.Maybe as M
+import qualified XMonad.StackSet as W
 import qualified XMonad.Util.ExtensibleState as XS
--- * for executing actions on both screens without changing focus
-import XMonad.Actions.OnScreen
 
 
 -- TODO(aarongable):
@@ -54,25 +48,40 @@ import XMonad.Actions.OnScreen
 
 
 -- | Main config
-main = xmonad $ withNavigation2DConfig myNavigation2DConfig
-              $ defaultConfig
-  { terminal            = myTerminal
+main = xmonad =<< xmobar myConfig
+
+myConfig = withNavigation2DConfig myNavigation2DConfig $ defaultConfig
+  { borderWidth         = myBorderWidth
+  , focusedBorderColor  = myFocusedBorderColor
+  , normalBorderColor   = myNormalBorderColor
+  , focusFollowsMouse   = myFocusFollowsMouse
+  , clickJustFocuses    = myClickJustFocuses
+  , terminal            = myTerminal
   , modMask             = myModMask
-  , focusFollowsMouse   = myFocus
+  , keys                = myKeys
   , workspaces          = myWorkspaces
   , layoutHook          = myLayoutHook
   , manageHook          = myManageHook
-  , keys                = myKeys
-  , borderWidth         = myBorderWidth
-  , normalBorderColor   = myInactiveBorderColor
-  , focusedBorderColor  = myActiveBorderColor
-  }
+  , logHook             = myLogHook
+--, mouseBindings
+--, startupHook
+--, handleEventHook
+}
 
 
 -- | Basics
 myTerminal = "gnome-terminal"
 myModMask = mod4Mask
-myFocus = False
+myFocusFollowsMouse = False
+myClickJustFocuses = False
+
+
+-- | Colors
+myBorderWidth = 1
+myFocusedBorderColor = "red"
+myNormalBorderColor = "#111111"
+ubuntuBackgroundColor = "#2C001E"
+ubuntuForegroundColor = "$AEA79F"
 
 
 -- | Workspaces
@@ -102,6 +111,10 @@ myManageHook = composeAll $ reverse [
   ]
 
 chatPlacement = withGaps (1,32,1,32) (smart (1,1))
+
+
+-- | Xmobar
+myLogHook = dynamicLog
 
 
 -- | Keyboard shortcuts
@@ -176,14 +189,6 @@ myKeys = \conf -> mkKeymap conf $
     | k <- myWsKeys
     , (m, f) <- [("M-", myViewer), ("M-S-", myShifter)]
   ]
-
-
--- | Colors
-myActiveBorderColor = "red"
-myInactiveBorderColor = "#111111"
-ubuntuBackgroundColor = "#2C001E"
-ubuntuForegroundColor = "$AEA79F"
-myBorderWidth = 1
 
 
 -- | Helper functions

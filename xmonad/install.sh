@@ -1,10 +1,11 @@
 #!/bin/bash
 # Intended for use with Ubuntu 12.04 LTS.
 
-sudo apt-get install xmonad gnome-panel suckless-tools
+sudo apt-get install xmonad xmobar gnome-panel suckless-tools
 
 mkdir -p ~/.xmonad
 ln -sf ~/dotfiles/xmonad/xmonad.hs ~/.xmonad/xmonad.hs
+ln -sf ~/dotfiles/xmonad/xmobarrc ~/.xmobarrc
 
 rm -f ~/.xmonad/xmonad-x86_64-linux
 xmonad --recompile
