@@ -4,15 +4,16 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-18-*-*-*-*-*-*-*"
        , position = Top
        , lowerOnStart = True
        , commands = [ Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
-                    , Run Wireless "wlan0" ["-t", "<essid>"] 10
+                    , Run Wireless "wlan0" ["-t", "<essid>"] 100
                     , Run BatteryP ["BAT0"]
                           ["-t", "<acstatus>"
                           , "-L", "10", "-H", "80" , "-l", "red", "-h", "green"
-                          , "--", "-O", "AC: <left>%", "-o", "Batt: <left% (<timeleft>)"
-                          ] 10
+                          , "--", "-O", "AC: <left>%", "-i", "AC: full"
+                          , "-o", "Batt: <left>% (<timeleft>)"
+                          ] 100
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=red><</fc> %wlan0wi% <fc=red><</fc> %battery% <fc=red><</fc> <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ <fc=red><</fc> %wlan0wi% <fc=red><</fc> %battery% <fc=red><</fc> <fc=orange>%date%</fc>"
 }
