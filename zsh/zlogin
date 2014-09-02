@@ -1,6 +1,6 @@
 xcompmgr_pid=`ps -o pid= -C xcompmgr`
 if [[ $? -ne 0 ]]; then
-  xcompmgr -a &
+  nohup xcompmgr -a &
   hsetroot -solid "#2C001E"
 fi
 
