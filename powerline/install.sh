@@ -3,8 +3,8 @@
 sudo apt-get install fontconfig
 
 mkdir ~/.fonts
-ln -sf ~/dotfiles/powerline/powerline-fonts/* ~/.fonts
+ln -sfT ~/dotfiles/powerline/powerline-fonts/* ~/.fonts
 fc-cache -vf ~/.fonts
 
 mkdir -p ~/.config/fontconfig/conf.d
-ln -sf ~/dotfiles/powerline/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+ln -sfT ~/dotfiles/powerline/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/

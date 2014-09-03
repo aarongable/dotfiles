@@ -2,5 +2,5 @@
 
 sudo apt-get install tmux
 
-ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/tmux/tmux-powerlinerc ~/.tmux-powerlinerc
+ln -sfT ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -sfT ~/dotfiles/tmux/tmux-powerlinerc ~/.tmux-powerlinerc

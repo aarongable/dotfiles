@@ -6,24 +6,30 @@ sudo apt-get install exuberant-ctags
 # for YouCompleteMe
 sudo apt-get install build-essential cmake python-dev
 
-# Set up vimified
-ln -sf ~/dotfiles/vim/vimified ~/.vim
-ln -sf ~/dotfiles/vim/vimified/vimrc ~/.vimrc
-ln -sf ~/dotfiles/vim/before.vimrc ~/.vim/before.vimrc
-ln -sf ~/dotfiles/vim/local.vimrc ~/.vim/local.vimrc
-ln -sf ~/dotfiles/vim/extra.vimrc ~/.vim/extra.vimrc
-ln -sf ~/dotfiles/vim/after.vimrc ~/.vim/after.vimrc
+# Set up vimified's vimrc
+ln -sfT ~/dotfiles/vim/vimified/vimrc ~/.vimrc
+ln -sfT ~/dotfiles/vim/before.vimrc ~/dotfiles/vim/vimified/before.vimrc
+ln -sfT ~/dotfiles/vim/local.vimrc ~/dotfiles/vim/vimified/local.vimrc
+ln -sfT ~/dotfiles/vim/extra.vimrc ~/dotfiles/vim/vimified/extra.vimrc
+ln -sfT ~/dotfiles/vim/after.vimrc ~/dotfiles/vim/vimified/after.vimrc
+ln -sfT ~/dotfiles/vim/after ~/dotfiles/vim/vimified/after
 
 # Set up basic things
-mkdir -p ~/.vim/bundle ~/.vim/tmp/backup ~/.vim/tmp/swap ~/.vim/tmp/undo
-ln -sf ~/dotfiles/vim/after ~/.vim/after
+mkdir -p ~/dotfiles/vim/vimified/tmp/backup
+mkdir -p ~/dotfiles/vim/vimified/tmp/swap
+mkdir -p ~/dotfiles/vim/vimified/tmp/undo
 
 # Set up vundle
-ln -sf ~/dotfiles/vim/vundle ~/.vim/bundle/vundle
-vim +BundleInstall +qall
+mkdir -p ~/dotfiles/vim/vimified/bundle
+ln -sfT ~/dotfiles/vim/vundle ~/dotfiles/vim/vimified/bundle/vundle
 
-
+# Install YCM
 SAVED_DIR=$PWD
-cd ~/.vim/bundle/YouCompleteMe
+cd ~/dotfiles/vim/vimified/bundle/YouCompleteMe
 ./install.sh
 cd $SAVED_DIR
+
+# Finally link vimified into place.
+ln -sfT ~/dotfiles/vim/vimified ~/.vim
+
+vim +BundleInstall +qall

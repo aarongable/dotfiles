@@ -2,5 +2,5 @@
 
 sudo apt-get install irssi
 
-ln -sf ~/dotfiles/irssi ~/.irssi
+ln -sfT ~/dotfiles/irssi ~/.irssi
 

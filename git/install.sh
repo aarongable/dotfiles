@@ -2,4 +2,4 @@
 
 sudo apt-get install git
 
-ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
+ln -sfT ~/dotfiles/git/gitconfig ~/.gitconfig
