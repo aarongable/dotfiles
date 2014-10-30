@@ -86,6 +86,9 @@ highlight clear SignColumn
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=darkgrey ctermfg=darkgrey
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black ctermfg=black
 
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd FileType gitcommit setlocal spell
+
 " since # searches for current word, \# clears searches
 nmap <leader># :let @/ = ""<CR>
 
