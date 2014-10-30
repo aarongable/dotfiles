@@ -86,10 +86,10 @@ ubuntuForegroundColor = "$AEA79F"
 
 
 -- | Workspaces
-myWorkspaces = nums ++ map ("F"++) nums
+myWorkspaces = concat $ L.transpose [nums, map ("F"++) nums]
     where nums = map show [1..10]
 -- workspace switching keys
-myWsKeys = myNumKeys ++ myFunKeys
+myWsKeys = concat $ L.transpose [myNumKeys, myFunKeys]
 myNumKeys = map show [1..9] ++ ["0"]
 myFunKeys = map (\n -> "<F"++n++">") (map show [1..10])
 
@@ -244,4 +244,4 @@ keyWs k = snd . head $ filter ((==k) . fst) myWsMap
 -- Maps input keys to corresponding number or function workspaces
 numKeyWs k = keyWs $ myNumKeys !! modIndex k
 funKeyWs k = keyWs $ myFunKeys !! modIndex k
-modIndex k = M.fromJust (L.elemIndex k myWsKeys) `mod` 10
+modIndex k = M.fromJust (L.elemIndex k myWsKeys) `div` 2
