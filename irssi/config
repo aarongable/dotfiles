@@ -25,13 +25,14 @@ chatnets = {
 };
 
 channels = (
+  { name = "#chrome-infra"; chatnet = "Google"; autojoin = "Yes"; }
+  { name = "#infra-monitoring"; chatnet = "Freenode"; autojoin = "Yes"; }
   { name = "#chromium"; chatnet = "Freenode"; autojoin = "Yes"; },
   {
     name = "#chromium-support";
     chatnet = "Freenode";
     autojoin = "Yes";
   },
-  { name = "#chrome-infra"; chatnet = "Google"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -243,12 +244,22 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
+        name = "#infra-monitoring";
+        tag = "Freenode";
+      }
+    );
+  };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
         name = "#chrome-infra";
         tag = "Google";
       }
     );
   };
-  3 = {
+  4 = {
     items = (
       {
         type = "CHANNEL";
@@ -258,7 +269,7 @@ windows = {
       }
     );
   };
-  4 = {
+  5 = {
     items = (
       {
         type = "CHANNEL";
@@ -268,9 +279,9 @@ windows = {
       }
     );
   };
-  5 = { name = "hilight"; sticky = "yes"; };
+  6 = { name = "hilight"; sticky = "yes"; };
 };
 mainwindows = {
-  5 = { first_line = "1"; lines = "7"; };
+  6 = { first_line = "1"; lines = "7"; };
   1 = { first_line = "8"; lines = "43"; };
 };
