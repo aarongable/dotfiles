@@ -10,26 +10,20 @@
 # $ tmux-multi.sh host{1..10}.tld
 # $ multi-delay.sh 0 1 ssh $ARG
 
-runcommand(min, max, cmd) {
-
-
-}
-    first=true
-    local args=( $ARGS )
-    for ARG in "${args[@]}"; do
-        local cmd="export ARG=$ARG && echo ARG=$ARG && $SHELL"
-        if [ "$first" == "true" ]; then
-          tmux new-window "$cmd"
-          first=false
-        else
-          tmux split-window -h "$cmd"
-          tmux select-layout tiled > /dev/null
-        fi
-    done
-    tmux select-pane -t 0
-    tmux set-window-option synchronize-panes on > /dev/null
+function usage {
+  echo "Usage: ./multi-delay.sh M N cmd [args]"
+  echo "Must provide a min delay, max delay, and command with optional args."
+  exit 1
 }
 
-ARGS=$*
+if [ ! $# -ge 3 ]; then
+  echo "Invalid number of arguments."
+  usage
+fi
 
-starttmux
+a=$(($RANDOM % $(($2 - $1 + 1)) + $1))
+echo $a
+sleep $a
+shift
+shift
+$@
