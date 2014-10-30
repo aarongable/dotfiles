@@ -17,11 +17,13 @@ VISUAL=`which vim`
 # Everything below here must be exported.
 #####
 
+GOROOT="/usr/local/go"
 GOPATH="$HOME/go"
 
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+PATH="$GOROOT/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/bin/depot_tools:$PATH"
 PATH="$HOME/bin/gsutil:$PATH"
