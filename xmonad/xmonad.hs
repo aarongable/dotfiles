@@ -1,4 +1,5 @@
 {-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE UnicodeSyntax #-}
 {- |
 Module       : xmonad.hs
 Description  : Configuration for the XMonad window manager.
@@ -48,7 +49,7 @@ import qualified XMonad.Util.ExtensibleState as XS
 
 
 -- | Main config
-main = xmonad =<< xmobar myConfig
+main = xmonad =<< myStatusBar myConfig
 
 myConfig = withNavigation2DConfig myNavigation2DConfig $ defaultConfig
   { borderWidth         = myBorderWidth
@@ -66,7 +67,7 @@ myConfig = withNavigation2DConfig myNavigation2DConfig $ defaultConfig
 --, mouseBindings
 --, startupHook
 --, handleEventHook
-}
+  }
 
 
 -- | Basics
@@ -104,8 +105,8 @@ myLayoutHook = avoidStrutsOn [] ( twocol ||| tworow  ||| threecol ||| tabbed )
 
 
 -- | Management
-myManageHook = composeAll $ reverse [
-    className =? "Xmessage" --> doFloat
+myManageHook = composeAll $ reverse
+  [ className =? "Xmessage" --> doFloat
   , appName =? "crx_nckgahadagoaajjgafhacjanaoiihapd" --> doShift "10" <+> placeHook chatPlacement <+> doFloat
   , manageDocks
   ]
@@ -116,15 +117,39 @@ chatPlacement = withGaps (1,32,1,32) (smart (1,1))
 -- | Xmobar
 myLogHook = dynamicLog
 
+myStatusBar = xmobar
+--myStatusBar conf = statusBar "xmonad" xmobarPP toggleStrutsKey conf
+
+toggleStrutsKey :: XConfig t -> (KeyMask, KeySym)
+toggleStrutsKey XConfig{modMask = modm} = (modm, xK_b )
+
+myPP = defaultPP
+  { ppCurrent         = xmobarColor "yellow" "" . wrap "[" "]"
+  , ppVisible         = wrap "(" ")"
+  , ppHidden          = id
+  , ppHiddenNoWindows = const ""
+  , ppUrgent          = xmobarColor "red" "yellow"
+  , ppSep             = " ❯ "
+  , ppWsSep           = " "
+  , ppTitle           = xmobarColor "green"  "" . shorten 128
+  , ppLayout          = id
+  , ppOrder           = id
+  , ppOutput          = putStrLn
+--, ppSort            = getSortByIndex
+  , ppExtras          = []
+  }
+
+myToggleStrutsKey XConfig{modMask = modm} = (modm, xK_b)
+
 
 -- | Keyboard shortcuts
 myNavKeys = ["h", "j", "k", "l"]
 myNavKeys2 = ["y", "i", "o", "p"]
 myNavDirs = [L, D, U, R]
 
-myNavigation2DConfig = defaultNavigation2DConfig {
-  layoutNavigation = [("tabbed", centerNavigation)]
-}
+myNavigation2DConfig = defaultNavigation2DConfig
+  { layoutNavigation = [("tabbed", centerNavigation)]
+  }
 
 myKeys = \conf -> mkKeymap conf $
   [ -- Directional window navigation (Navigation2D)
