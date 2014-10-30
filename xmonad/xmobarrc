@@ -1,4 +1,4 @@
-Config { font = "xft:Ubuntu Mono-13"
+Config { font = "xft:DejaVu Sans Mono for Powerline-10"
        , bgColor = "black"
        , fgColor = "grey"
        , position = Top
@@ -15,5 +15,5 @@ Config { font = "xft:Ubuntu Mono-13"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=red>❮</fc> %wlan0wi% <fc=red>❮</fc> %battery% <fc=red>❮</fc> <fc=orange>%date%</fc>"
+       , template = "%StdinReader% }{ <fc=red>❮</fc> %wlan0wi% <fc=red>❮</fc> %battery% <fc=red>❮</fc> <fc=orange>%date%</fc> "
 }
