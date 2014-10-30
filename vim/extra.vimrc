@@ -9,6 +9,7 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'aarongable/vim-python-indent'
 Bundle 'jnwhiteh/vim-golang.git'
+Bundle 'fatih/vim-go'
 
 " Tools
 Bundle 'Lokaltog/vim-easymotion'
