@@ -55,4 +55,4 @@ eval "$($HOME/work/infra/infra/ENV/bin/register-python-argcomplete run.py)"
 eval "$($HOME/work/infra/infra/ENV/bin/register-python-argcomplete test.py)"
 
 # The next line enables bash completion for gcloud.
-source "$HOME/bin/google-cloud-sdk/completion.zsh.inc"
+source "$HOME/local/bin/google-cloud-sdk/completion.zsh.inc"

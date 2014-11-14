@@ -25,14 +25,18 @@ chatnets = {
 };
 
 channels = (
-  { name = "#chrome-infra"; chatnet = "Google"; autojoin = "Yes"; }
-  { name = "#infra-monitoring"; chatnet = "Freenode"; autojoin = "Yes"; }
-  { name = "#chromium"; chatnet = "Freenode"; autojoin = "Yes"; },
-  {
-    name = "#chromium-support";
+  { name = "#chrome-infra"; chatnet = "Google"; autojoin = "Yes"; },
+  { 
+    name = "#infra-monitoring";
     chatnet = "Freenode";
     autojoin = "Yes";
   },
+  { name = "#chromium"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { 
+    name = "#chromium-support";
+    chatnet = "Freenode";
+    autojoin = "Yes";
+  }
 );
 
 aliases = {
@@ -221,7 +225,7 @@ settings = {
     awl_display_key = "$Q%K|%n$H$C$S";
   };
 };
-hilights = (
+hilights = ( 
   { text = "agable"; nick = "yes"; },
   { text = "trooper"; }
 );

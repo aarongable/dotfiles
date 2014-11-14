@@ -20,20 +20,19 @@ VISUAL=`which vim`
 GOROOT="/usr/local/go"
 GOPATH="$HOME/go"
 
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/local/bin" ] ; then
+    PATH="$HOME/local/bin:$PATH"
 fi
 PATH="$GOROOT/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
-PATH="$HOME/bin/depot_tools:$PATH"
-PATH="$HOME/bin/gsutil:$PATH"
-PATH="$HOME/bin/google_appengine:$PATH"
+PATH="$HOME/local/bin/depot_tools:$PATH"
+PATH="$HOME/local/bin/gsutil:$PATH"
 
-MANPATH=":$HOME/bin/depot_tools/docs"
+MANPATH=":$HOME/local/bin/depot_tools/docs"
 
 export GOPATH
 export MANPATH
 export PATH
 
 # The next line updates PATH for the Google Cloud SDK.
-source "$HOME/bin/google-cloud-sdk/path.zsh.inc"
+source "$HOME/local/bin/google-cloud-sdk/path.zsh.inc"
