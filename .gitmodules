@@ -10,10 +10,6 @@
 	path = vim/vimified
 	url = https://github.com/zaiste/vimified.git
 	branch = master
-[submodule "vim/vundle"]
-	path = vim/vundle
-	url = https://github.com/gmarik/vundle.git
-	branch = master
 [submodule "tmux/tmux-powerline"]
 	path = tmux/tmux-powerline
 	url = https://github.com/erikw/tmux-powerline
