@@ -1,4 +1,5 @@
-filetype off
+call vundle#end()
+call maktaba#plugin#Detect()
 
 let mapleader = '\'
 
@@ -114,3 +115,5 @@ augroup END
 
 " Reopen file at last used point
 :au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
+filetype plugin indent on

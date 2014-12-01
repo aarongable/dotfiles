@@ -12,6 +12,9 @@ Bundle 'jnwhiteh/vim-golang.git'
 Bundle 'fatih/vim-go'
 
 " Tools
+Bundle 'google/vim-maktaba'
+Bundle 'google/vim-glaive'
+Bundle 'google/vim-syncopate'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'xolox/vim-easytags'
 Bundle 'xolox/vim-misc'
