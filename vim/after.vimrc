@@ -1,5 +1,6 @@
 call vundle#end()
 call maktaba#plugin#Detect()
+call glaive#Install()
 
 let mapleader = '\'
 
@@ -37,6 +38,7 @@ let g:pymode = 0
 let g:pymode_indent = 0
 let g:syntastic_mode_map = {'mode': 'passive'}
 
+Glaive syncopate plugin[mappings]='hy'
 
 set backspace=indent,eol,start
 
