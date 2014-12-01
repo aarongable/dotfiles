@@ -8,6 +8,7 @@
   ui = true
 [alias]
   co     = checkout
+  cp     = cherry-pick
   root   = checkout origin/master
   # These are all great git helper commands from Chromium's depot_tools
   reup   = rebase-update
