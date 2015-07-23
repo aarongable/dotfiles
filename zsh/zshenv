@@ -17,6 +17,9 @@ VISUAL=`which vim`
 # Everything below here must be exported.
 #####
 
+# The next line updates PATH for the Google Cloud SDK.
+source "$HOME/local/bin/google-cloud-sdk/path.zsh.inc"
+
 GOROOT="/usr/local/go"
 GOPATH="$HOME/go"
 
@@ -26,13 +29,9 @@ fi
 PATH="$GOROOT/bin:$PATH"
 PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/local/bin/depot_tools:$PATH"
-PATH="$HOME/local/bin/gsutil:$PATH"
 
 MANPATH=":$HOME/local/bin/depot_tools/docs"
 
 export GOPATH
 export MANPATH
 export PATH
-
-# The next line updates PATH for the Google Cloud SDK.
-source "$HOME/local/bin/google-cloud-sdk/path.zsh.inc"
