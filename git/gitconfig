@@ -13,7 +13,7 @@
   # These are all great git helper commands from Chromium's depot_tools
   reup   = rebase-update
   udiff  = upstream-diff
-  bmap   = map-branches
+  bmap   = map-branches -vv
   nb     = new-branch
   tb     = new-branch --upstream_current
 [push]
