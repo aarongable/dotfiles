@@ -10,27 +10,18 @@ servers = (
   {
     address = "irc.corp.google.com";
     chatnet = "Google";
-    port = "6667";
-    use_ssl = "no";
+    port = "6697";
+    use_ssl = "yes";
     ssl_verify = "no";
     autoconnect = "yes";
-  },
-  { address = "irc.ubuntu.com"; chatnet = "Ubuntu"; port = "8001"; }
+  }
 );
 
-chatnets = {
-  Freenode = { type = "IRC"; };
-  Google = { type = "IRC"; };
-  Ubuntu = { type = "IRC"; };
-};
+chatnets = { Freenode = { type = "IRC"; }; Google = { type = "IRC"; }; };
 
 channels = (
   { name = "#chrome-infra"; chatnet = "Google"; autojoin = "Yes"; },
-  { 
-    name = "#infra-monitoring";
-    chatnet = "Freenode";
-    autojoin = "Yes";
-  },
+  { name = "#chrome-sf"; chatnet = "Google"; autojoin = "Yes"; },
   { name = "#chromium"; chatnet = "Freenode"; autojoin = "Yes"; },
   { 
     name = "#chromium-support";
@@ -225,9 +216,10 @@ settings = {
     awl_display_key = "$Q%K|%n$H$C$S";
   };
 };
-hilights = ( 
+hilights = (
   { text = "agable"; nick = "yes"; },
-  { text = "trooper"; }
+  { text = "trooper"; },
+  { text = "aaron"; }
 );
 keyboard = (
   { key = "alt+j"; id = "command"; data = "nicklist scroll +10"; },
@@ -239,7 +231,9 @@ ignores = (
   {
     level = "CRAP JOINS PARTS QUITS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS";
     channels = ( "#chromium" );
-  }
+  },
+  { mask = "QUITS"; level = "ALL"; },
+  { mask = "JOINS"; level = "ALL"; }
 );
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
@@ -248,8 +242,8 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#infra-monitoring";
-        tag = "Freenode";
+        name = "#chrome-infra";
+        tag = "Google";
       }
     );
   };
@@ -258,7 +252,7 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#chrome-infra";
+        name = "#chrome-sf";
         tag = "Google";
       }
     );
