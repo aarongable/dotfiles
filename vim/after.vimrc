@@ -38,7 +38,7 @@ let g:pymode = 0
 let g:pymode_indent = 0
 let g:syntastic_mode_map = {'mode': 'passive'}
 
-Glaive syncopate plugin[mappings]='hy'
+Glaive syncopate plugin[mappings]='cy'
 
 set backspace=indent,eol,start
 
@@ -64,11 +64,12 @@ set list listchars=tab:»·,trail:␣
 set mouse=a             "enable mouse
 set wildmenu            "enable fun tab-complete prettyness
 set wildmode=list:longest,full
-set clipboard+=unnamed  "yanking automatically uses system clipboard
+set clipboard^=unnamed  "yanking automatically uses system clipboard
 set splitbelow
 set splitright
 
 " Tabs
+set nobinary
 set autoindent          " always set autoindenting on
 set et ts=2 sts=2 sw=2  "set tab defaults
 
