@@ -16,16 +16,19 @@ My personal XMonad configuration, intended to run standalone on Ubuntu 14.04.
 -- | Imports
 import XMonad hiding ((|||))
 
+import Control.Monad
 import System.Exit
 import System.IO
 
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.OnScreen
 
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.Place
 
+import XMonad.Layout.IndependentScreens (countScreens)
 import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.Renamed
 import XMonad.Layout.ResizableTile
@@ -49,55 +52,88 @@ import qualified XMonad.Util.ExtensibleState as XS
 
 
 -- | Main config
-main = xmonad =<< myStatusBar myConfig
+main = do
+  numScreens <- countScreens
+  xmobarPipe <- spawnPipe myXmobar
+  xmonad $ myConfig numScreens xmobarPipe
 
-myConfig = withNavigation2DConfig myNavigation2DConfig $ defaultConfig
+myConfig n h = withNavigation2DConfig myNavigation2DConfig $ defaultConfig
+  -- In the same order as they are defined in the default config.hs.
   { borderWidth         = myBorderWidth
-  , focusedBorderColor  = myFocusedBorderColor
+  , workspaces          = myWorkspaces n
+  , layoutHook          = myLayoutHook
+  , terminal            = myTerminal
   , normalBorderColor   = myNormalBorderColor
+  , focusedBorderColor  = myFocusedBorderColor
+  , modMask             = myModMask
+  , keys                = myKeys n
+  , logHook             = myLogHook h
+  , startupHook         = myStartupHook
+--, mouseBindings       = The default ones are good.
+  , manageHook          = myManageHook
+  , handleEventHook     = myHandleEventHook
   , focusFollowsMouse   = myFocusFollowsMouse
   , clickJustFocuses    = myClickJustFocuses
-  , terminal            = myTerminal
-  , modMask             = myModMask
-  , keys                = myKeys
-  , workspaces          = myWorkspaces
-  , layoutHook          = myLayoutHook
-  , manageHook          = myManageHook
-  , logHook             = myLogHook
---, mouseBindings
---, startupHook
---, handleEventHook
   }
 
 
 -- | Basics
 myTerminal = "gnome-terminal"
-myModMask = mod4Mask
-myFocusFollowsMouse = False
-myClickJustFocuses = False
+myModMask = mod4Mask  -- Windows/Super key isn't useful for anything else...
+myFocusFollowsMouse = False  -- Who uses the mouse anyway?
+myClickJustFocuses = False  -- But when you do, it should actually work.
 
 
 -- | Colors
 myBorderWidth = 1
 myFocusedBorderColor = "red"
 myNormalBorderColor = "#111111"
-ubuntuBackgroundColor = "#2C001E"
-ubuntuForegroundColor = "$AEA79F"
+ubuntuBackgroundColor = "#5E2750"  -- "Mid aubergine"
+ubuntuForegroundColor = "#AEA79F"  -- "Warm grey"
+
+
+-- | Startup
+myStartupHook = return ()
 
 
 -- | Workspaces
-myWorkspaces = concat $ L.transpose [nums, map ("F"++) nums]
-    where nums = map show [1..10]
--- workspace switching keys
-myWsKeys = concat $ L.transpose [myNumKeys, myFunKeys]
-myNumKeys = map show [1..9] ++ ["0"]
-myFunKeys = map (\n -> "<F"++n++">") (map show [1..10])
+-- The idea here is to always have 10 workspaces. But because xmonad always
+-- shows one workspace per screen, instead create 10 * (number of screens)
+-- workspaces. Then only assign a single key to each set of (number of screens)
+-- workspaces and use myViewer to switch the workspace which is displayed
+-- on all screens simultaneously.
+-- If three screens are present, a single "virtual workspace" will consist of
+-- a set of xmonad workspaces spaced 10 apart, e.g. "(3) (13) (23)".
+-- The number of screens present is passed in as the argument to myWorkspaces
+-- by the top level main function, and is passed downward from there.
+myScreens n = [0..n-1]
+myWsOrdering = [1..9] ++ [0]
+calcOffset o n = 10 * o + n
+myWorkspaces n = map show [ calcOffset o k | k <- myWsOrdering, o <- myScreens n ]
+myWsKeys = myWsOrdering
+
+-- needs to generalize over N screens
+viewWsOnScreen ws screen = windows (onlyOnScreen screen (show $ calcOffset screen ws))
+myViewer n k = foldr1 (>>) [viewWsOnScreen k s | s <- myScreens n]
+myViewer1 k = foldr1 (>>) [
+    windows (onlyOnScreen 0 (show $ calcOffset 0 k))
+  , windows (onlyOnScreen 1 (show $ calcOffset 1 k))
+  , windows (onlyOnScreen 2 (show $ calcOffset 2 k))
+  ]
+myViewer2 k = foldr1 (>>) $! [
+    windows (onlyOnScreen m (show $ calcOffset m k))
+  | m <- [0..2]
+  ]
+
+-- needs to send to given workspace with same offset as current workspace
+myShifter n k = windows $ W.shift (show $ calcOffset 0 k)
 
 
 -- | Layouts
--- windowNavigation for M-[hjkl] movement
--- avoidStrutsOn [] to get toggleStruts, but hiding panels by default
-myLayoutHook = avoidStrutsOn [] ( twocol ||| tworow  ||| threecol ||| tabbed )
+-- windowNavigation for M-[hjkl] movement.
+-- avoidStrutsOn [] to get toggleStruts, but hiding panels by default.
+-- TODO(agable): Use layout combinators to get jump-to-layout functionality.
+myLayoutHook = avoidStruts ( twocol ||| tworow  ||| threecol ||| tabbed )
     where twocol = renamed [Replace "twocol"] $ ResizableTall 1 (3/100) (1/2) []
           tworow = renamed [Replace "tworow"] $ Mirror twocol
           threecol = renamed [Replace "threecol"] $ ThreeCol 1 (3/100) (1/3)
@@ -107,6 +143,7 @@ myLayoutHook = avoidStrutsOn [] ( twocol ||| tworow  ||| threecol ||| tabbed )
 -- | Management
 myManageHook = composeAll $ reverse
   [ className =? "Xmessage" --> doFloat
+  , appName =? "gnubby_ssh_prompt" --> doFloat
   , appName =? "crx_nckgahadagoaajjgafhacjanaoiihapd" --> doShift "10" <+> placeHook chatPlacement <+> doFloat
   , manageDocks
   ]
@@ -114,44 +151,38 @@ myManageHook = composeAll $ reverse
 chatPlacement = withGaps (1,32,1,32) (smart (1,1))
 
 
+-- | Desktop integration
+myHandleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
+
+
 -- | Xmobar
-myLogHook = dynamicLog
+myXmobar = "xmobar"  -- Uses default config file at ~/.xmobarrc.
+myLogHook h = dynamicLogWithPP $ myPP h
 
-myStatusBar = xmobar
---myStatusBar conf = statusBar "xmonad" xmobarPP toggleStrutsKey conf
-
-toggleStrutsKey :: XConfig t -> (KeyMask, KeySym)
-toggleStrutsKey XConfig{modMask = modm} = (modm, xK_b )
-
-myPP = defaultPP
+-- Very similar to default, but with longer truncation for title.
+myPP h = defaultPP
   { ppCurrent         = xmobarColor "yellow" "" . wrap "[" "]"
-  , ppVisible         = wrap "(" ")"
+  , ppVisible         = xmobarColor "orange" "" . wrap "(" ")"
   , ppHidden          = id
   , ppHiddenNoWindows = const ""
   , ppUrgent          = xmobarColor "red" "yellow"
-  , ppSep             = " ❯ "
+  , ppSep             = xmobarColor "red" "" " ❯ "
   , ppWsSep           = " "
   , ppTitle           = xmobarColor "green"  "" . shorten 128
   , ppLayout          = id
-  , ppOrder           = id
-  , ppOutput          = putStrLn
---, ppSort            = getSortByIndex
+--, ppOrder           = The default order (ws, layout, command) is good.
+--, ppSort            = The workspaces are already sorted correctly.
   , ppExtras          = []
+  , ppOutput          = hPutStrLn h
   }
-
-myToggleStrutsKey XConfig{modMask = modm} = (modm, xK_b)
 
 
 -- | Keyboard shortcuts
-myNavKeys = ["h", "j", "k", "l"]
-myNavKeys2 = ["y", "i", "o", "p"]
-myNavDirs = [L, D, U, R]
-
 myNavigation2DConfig = defaultNavigation2DConfig
   { layoutNavigation = [("tabbed", centerNavigation)]
   }
 
-myKeys = \conf -> mkKeymap conf $
+myKeys n = \conf -> mkKeymap conf $
   [ -- Directional window navigation (Navigation2D)
     ("M-h",             windowGo L False)
   , ("M-j",             windowGo D False)
@@ -161,18 +192,14 @@ myKeys = \conf -> mkKeymap conf $
   , ("M-S-j",           windowSwap D False)
   , ("M-S-k",           windowSwap U False)
   , ("M-S-l",           windowSwap R False)
-  , ("M-S-y",           windowToScreen L False)
-  , ("M-S-u",           windowToScreen D False)
-  , ("M-S-i",           windowToScreen U False)
-  , ("M-S-o",           windowToScreen R False)
+  , ("M-S-y",           windowToScreen L False <+> windowGo L False)
+  , ("M-S-u",           windowToScreen D False <+> windowGo D False)
+  , ("M-S-i",           windowToScreen U False <+> windowGo U False)
+  , ("M-S-o",           windowToScreen R False <+> windowGo R False)
   , ("M-y",             screenGo L False)
   , ("M-u",             screenGo D False)
   , ("M-i",             screenGo U False)
   , ("M-o",             screenGo R False)
-  , ("M1-S-y",          screenSwap L True)
-  , ("M1-S-u",          screenSwap D True)
-  , ("M1-S-i",          screenSwap U True)
-  , ("M1-S-o",          screenSwap R True)
   ]
   ++
   [ -- Navigation utilities
@@ -181,7 +208,7 @@ myKeys = \conf -> mkKeymap conf $
   , ("M-m",             windows W.focusMaster)
   , ("M-S-m",           windows W.swapMaster)
   , ("M-t",             withFocused $ windows . W.sink)
-  , ("M-q",             kill)
+  , ("M-S-q",           kill)
   ]
   ++
   [ -- Layout Management
@@ -192,7 +219,6 @@ myKeys = \conf -> mkKeymap conf $
   , ("M-S--",           sendMessage Shrink)
   , ("M-S-=",           sendMessage Expand)
   , ("M-b",             sendMessage ToggleStruts)
-  , ("M-<Scroll_lock>", XS.modify wsTogglePairState)
   ]
   ++
   [ -- Applications
@@ -205,43 +231,13 @@ myKeys = \conf -> mkKeymap conf $
   ++
   [ -- XMonad system
     ("M-C-<Esc>",       spawn $ "xkill")
-  , ("M-S-q",           io (exitWith ExitSuccess))
+  , ("M-C-S-q",         io (exitWith ExitSuccess))
   , ("M-S-r",           spawn "xmonad --recompile; xmonad --restart")
   ]
   ++
   [ -- Unified workspace shifting
-    (m ++ k,            f k)
-    | k <- myWsKeys
-    , (m, f) <- [("M-", myViewer), ("M-S-", myShifter)]
+    (mod ++ show key,        func key)
+    | key <- myWsKeys,
+--    (mod, func) <- [("M-", (myViewer n)), ("M-S-", (myShifter n))]
+      (mod, func) <- [("M-", (myViewer1)), ("M-S-", (myShifter n))]
   ]
-
-
--- | Helper functions
--- let bools be stored in persistent storage
-data WsPairState = WsPairState Bool deriving (Typeable, Read, Show)
-instance ExtensionClass WsPairState where
-  initialValue  = WsPairState True
-  extensionType = PersistentExtension
-
--- toggle the state of the stored bool
-wsTogglePairState (WsPairState s) = WsPairState $ not s
-
--- The core of the workspace switching
--- * if the pair state is false, just do normal views
--- * if the pair state is true, do paired workspace switching
-myViewer k = do
-  WsPairState s <- XS.get
-  case s of
-    False -> windows $ W.view (keyWs k)
-    True  -> windows (onlyOnScreen 0 (numKeyWs k)) >> windows (onlyOnScreen 1 (funKeyWs k))
-
-myShifter k = windows $ W.shift (keyWs k)
-
--- Maps input keys to corresponding workspaces
-keyWs k = snd . head $ filter ((==k) . fst) myWsMap
-  where
-    myWsMap = zip myWsKeys myWorkspaces
--- Maps input keys to corresponding number or function workspaces
-numKeyWs k = keyWs $ myNumKeys !! modIndex k
-funKeyWs k = keyWs $ myFunKeys !! modIndex k
-modIndex k = M.fromJust (L.elemIndex k myWsKeys) `div` 2
