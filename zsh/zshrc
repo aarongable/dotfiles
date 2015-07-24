@@ -39,9 +39,9 @@ source $ZSH/oh-my-zsh.sh
 # If ssh keys haven't been added to the ssh-agent already, do so now.
 # Due to $ZSH/custom/sshag.zsh, they will be persistent across all other
 # terminals spawned after this one.
-if [[ $(ssh-add -l) == "The agent has no identities." ]] ; then
-  ssh-add $HOME/.ssh/id_rsa
-fi
+# if [[ $(ssh-add -l) == "The agent has no identities." ]] ; then
+#   ssh-add $HOME/.ssh/id_rsa
+# fi
 
 # Vim FTW.
 bindkey -a 'v' edit-command-line
@@ -56,3 +56,4 @@ eval "$($HOME/work/infra/infra/ENV/bin/register-python-argcomplete test.py)"
 
 # The next line enables bash completion for gcloud.
 source "$HOME/local/bin/google-cloud-sdk/completion.zsh.inc"
+source /etc/bash_completion.d/g4d

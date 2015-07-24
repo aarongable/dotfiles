@@ -74,7 +74,7 @@ function sshag_init {
 # This is all commented out because zsh sources files differently than
 # bash; the 'if' branch gets hit no matter what, producing useless output.
 
-sshag_init
+# sshag_init
 
 # # If we are not being sourced, but rather running as a subshell,
 # # let people know how to use the output.
