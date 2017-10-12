@@ -12,6 +12,9 @@ fi
 # Make sure everyone knows I use vim
 EDITOR=`which vim`
 VISUAL=`which vim`
+# # Try using Spacemacs for a while
+# export ALTERNATE_EDITOR=""
+# export EDITOR=emacsclient
 
 ######
 # Everything below here must be exported.
@@ -20,14 +23,18 @@ VISUAL=`which vim`
 # The next line updates PATH for the Google Cloud SDK.
 source "$HOME/local/bin/google-cloud-sdk/path.zsh.inc"
 
-GOROOT="/usr/local/go"
-GOPATH="$HOME/go"
+if [ -z "$GOROOT" ]; then
+  GOROOT="/usr/local/go"
+  PATH="$GOROOT/bin:$PATH"
+fi
+if [ -z "$GOPATH" ]; then
+  GOPATH="$HOME/go"
+  PATH="$GOPATH/bin:$PATH"
+fi
 
 if [ -d "$HOME/local/bin" ] ; then
     PATH="$HOME/local/bin:$PATH"
 fi
-PATH="$GOROOT/bin:$PATH"
-PATH="$GOPATH/bin:$PATH"
 PATH="$HOME/local/bin/depot_tools:$PATH"
 
 MANPATH=":$HOME/local/bin/depot_tools/docs"

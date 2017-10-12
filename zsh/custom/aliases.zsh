@@ -1,3 +1,5 @@
+alias     e='emacsclient -t'
+
 # Quicker access to all the various ls modes
 # nicer ls, all other alii reference this one
 alias     ls='ls --color=auto -hF --group-directories-first'
@@ -20,17 +22,27 @@ alias     man='nocorrect man'
 alias     git='nocorrect git'
 alias     rsync='rsync -vhuP'
 
-# start a new named tmux session
-alias     ts='tmux new-session -s'
-# attach to an old session
-alias     ta='tmux attach-session -t'
-# steal a session for where it is attached elsewhere
-alias     td='tmux attach-session -d -t'
-# attach a new tmux session to the windows from the named one
-alias     tt='tmux new-session -t'
-# list all currently running tmux sessions
-alias     tls='tmux list-sessions'
+alias     gc='git commit -a'
+alias     ga='git commit -a --amend'
+alias     gb='git bmap'
 
+# start a new named tmux session
+alias     ts='tmux -2 new-session -s'
+# attach to an old session
+alias     ta='tmux -2 attach-session -t'
+# steal a session for where it is attached elsewhere
+alias     td='tmux -2 attach-session -d -t'
+# attach a new tmux session to the windows from the named one
+alias     tt='tmux -2 new-session -t'
+# list all currently running tmux sessions
+alias     tls='tmux -2 list-sessions'
+
+# always use vertical splits
+alias     vim='vim -O'
+
+# ack-grep is a silly name
+alias     ack=ack-grep
 
 alias menu='/google/data/ro/projects/menu/menu.par --highlight_allergens=vegetarian --default_locations=mtv --max_terminal_width=0'
 alias dinner='menu --max_cafes_to_show=0 nourish,charlies,noname,moma,crave'
+alias pa='prodaccess --chromegolo_ssh'
