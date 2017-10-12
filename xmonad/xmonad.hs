@@ -144,7 +144,6 @@ myLayoutHook = avoidStruts ( twocol ||| tworow  ||| threecol ||| tabbed )
 myManageHook = composeAll $ reverse
   [ className =? "Xmessage" --> doFloat
   , appName =? "gnubby_ssh_prompt" --> doFloat
-  , appName =? "crx_nckgahadagoaajjgafhacjanaoiihapd" --> doShift "10" <+> placeHook chatPlacement <+> doFloat
   , manageDocks
   ]
 
