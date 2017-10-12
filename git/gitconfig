@@ -1,20 +1,31 @@
 # vim: ft=gitconfig:
 [user]
-  name = Aaron Gable
-  email = agable@chromium.org
+	name = Aaron Gable
+	email = agable@chromium.org
 [core]
-  excluesfile = ~/dotfiles/git/gitignore
+	excluesfile = ~/dotfiles/git/gitignore
+	pager = less -FRSX
 [color]
-  ui = true
+	ui = true
 [alias]
-  co     = checkout
-  cp     = cherry-pick
-  root   = checkout origin/master
-  # These are all great git helper commands from Chromium's depot_tools
-  reup   = rebase-update
-  udiff  = upstream-diff
-  bmap   = map-branches -vv
-  nb     = new-branch
-  tb     = new-branch --upstream_current
+	ci    = commit -a
+	ca    = commit -a --amend -C HEAD
+	co    = checkout
+	cp    = cherry-pick -x
+	root  = checkout origin/master
+	# These are all great git helper commands from Chromium's depot_tools
+	reup  = rebase-update
+	udiff	= upstream-diff
+	bmap  = map-branches -vvv
+	nb    = new-branch
+	tb    = new-branch --upstream_current
 [push]
-  default = upstream
+	default = upstream
+[transfer]
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+[receive]
+	fsckObjects = true
+[http]
+	cookiefile = /usr/local/google/home/agable/.gitcookies
