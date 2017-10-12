@@ -31,9 +31,9 @@ nmap <leader>ls :NERDTreeToggle<CR>
 nmap <leader>t :TagbarToggle<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:easytags_file = '~/.vim/tmp/tags'
-let g:easytags_auto_highlight = 0
-let g:easytags_updatetime_warn = 0
+" let g:easytags_file = '~/.vim/tmp/tags'
+" let g:easytags_auto_highlight = 0
+" let g:easytags_updatetime_warn = 0
 let g:pymode = 0
 let g:pymode_indent = 0
 let g:syntastic_mode_map = {'mode': 'passive'}
@@ -75,7 +75,7 @@ set et ts=2 sts=2 sw=2  "set tab defaults
 
 " Coloring
 colorscheme hybrid
-set background=light
+set background=dark
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")

@@ -1,4 +1,4 @@
-let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'color']
+let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'go', 'color']
 
 " Note: this is equivalent to:
 " Note note: this list may become out of date; check vimified.
