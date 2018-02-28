@@ -224,7 +224,7 @@ myKeys n = \conf -> mkKeymap conf $
     ("M-<Return>",      spawn $ XMonad.terminal conf)
   , ("M-S-<Return>",    spawn $ "dmenu_run -l 4 -nb '#2C001E' -nf '#AEA79F'"
                                            ++ " -sb '#AEA79F' -sf '#2C001E'")
-  , ("<F12>",           spawn $ "gnome-screensaver-command --lock")
+  , ("<F12>",           spawn $ "i3lock -c 2C001E")
   , ("<Print>",         spawn $ "gnome-screenshot --interactive")
   ]
   ++
