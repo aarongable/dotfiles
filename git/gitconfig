@@ -1,8 +1,9 @@
 # vim: ft=gitconfig:
 [user]
   name = Aaron Gable
+[include]
+  path = ~/.config/git/customconfig
 [core]
-  include = ~/.config/git/customconfig
   pager = less -FRSX
 [color]
   ui = true
