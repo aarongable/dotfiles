@@ -20,24 +20,27 @@ VISUAL=`which vim`
 # Everything below here must be exported.
 #####
 
-# The next line updates PATH for the Google Cloud SDK.
-source "$HOME/local/bin/google-cloud-sdk/path.zsh.inc"
-
-if [ -z "$GOROOT" ]; then
-  GOROOT="/usr/local/go"
-  PATH="$GOROOT/bin:$PATH"
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
+
+# Update PATH for the Google Cloud SDK.
+source "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
+
+# Update PATH for fzf.
+if [[ ! "$PATH" == *$HOME/.local/share/fzf/bin* ]]; then
+  export PATH="$PATH:$HOME/.local/share/fzf/bin"
+fi
+
+# Update PATH for depot_tools, as long as I work on Chromium.
+PATH="$HOME/.local/share/depot_tools:$PATH"
+MANPATH=":$HOME/.local/share/depot_tools/docs"
+
+# Set up GOPATH, assuming that I have a /work drive.
 if [ -z "$GOPATH" ]; then
-  GOPATH="$HOME/go"
+  GOPATH="/work/go"
   PATH="$GOPATH/bin:$PATH"
 fi
-
-if [ -d "$HOME/local/bin" ] ; then
-    PATH="$HOME/local/bin:$PATH"
-fi
-PATH="$HOME/local/bin/depot_tools:$PATH"
-
-MANPATH=":$HOME/local/bin/depot_tools/docs"
 
 export GOPATH
 export MANPATH
