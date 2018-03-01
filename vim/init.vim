@@ -15,6 +15,7 @@ Plug 'google/vim-syncopate'
 Plug 'gregsexton/gitv'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', {'dir': '~/.local/share/fzf', 'do': './install --bin'}
+Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'michaeljsmith/vim-indent-object'
@@ -37,7 +38,6 @@ Plug 'zaiste/tmux.vim'
 " syntax enable
 call plug#end()
 
-call maktaba#plugin#Detect()
 call glaive#Install()
 Glaive syncopate plugin[mappings]
 
