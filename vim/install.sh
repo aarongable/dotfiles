@@ -1,35 +1,26 @@
 #!/bin/sh
 
-sudo apt-get install vim
-# for easytags
-sudo apt-get install exuberant-ctags
-# for YouCompleteMe
-sudo apt-get install build-essential cmake python-dev
+# Use neovim because it's the future now.
+sudo apt-get install nvim
+sudo update-alternatives --set editor /usr/bin/nvim
+sudo update-alternatives --set vim /usr/bin/nvim
 
-# Set up vimified's vimrc
-ln -sfT ~/dotfiles/vim/before.vimrc ~/dotfiles/vim/vimified/before.vimrc
-ln -sfT ~/dotfiles/vim/local.vimrc ~/dotfiles/vim/vimified/local.vimrc
-ln -sfT ~/dotfiles/vim/extra.vimrc ~/dotfiles/vim/vimified/extra.vimrc
-ln -sfT ~/dotfiles/vim/after.vimrc ~/dotfiles/vim/vimified/after.vimrc
-ln -sfT ~/dotfiles/vim/after ~/dotfiles/vim/vimified/after
+# nvim config lives in $XDG_CONFIG_HOME/nvim/.
+mkdir -p ~/.config/nvim
+ln -sfT ~/dotfiles/vim/init.vim ~/.config/nvim/init.vim
 
-# Set up basic things
-mkdir -p ~/dotfiles/vim/vimified/tmp/backup
-mkdir -p ~/dotfiles/vim/vimified/tmp/swap
-mkdir -p ~/dotfiles/vim/vimified/tmp/undo
+# nvim plugins live in $XDG_DATA_HOME/nvim/site/.
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mkdir -p ~/.local/share/nvim/site/plugged
 
-# Set up vundle
-git clone https://github.com/gmair/vundle.git ~/dotfiles/vim/vimified/bundle
+# nvim throwaway data lives in $XDG_CACHE_HOME/nvim/.
+mkdir -p ~/.cache/nvim/backup
+mkdir -p ~/.cache/nvim/swap
+mkdir -p ~/.cache/nvim/undo
 
-# Finally link vimified into place.
-ln -sfT ~/dotfiles/vim/vimified/vimrc ~/.vimrc
-ln -sfT ~/dotfiles/vim/vimified ~/.vim
+# Install YouCompleteMe dependencies.
+sudo apt-get install cmake pip
+pip install --user neovim
 
-vim +BundleInstall +qall
-
-# Install YCM
-SAVED_DIR=$PWD
-cd ~/dotfiles/vim/vimified/bundle/YouCompleteMe
-./install.sh
-cd $SAVED_DIR
-
+nvim +PlugInstall
