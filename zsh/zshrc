@@ -94,15 +94,11 @@ setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a traili
 unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
 unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor
 unsetopt CDABLE_VARS       # Don't search ~ when completing `cd`
-
-# Autocompletion for commands in the Chromium infra repositories.
 autoload -Uz bashcompinit compinit
 bashcompinit
-eval "$($HOME/work/infra/infra/ENV/bin/register-python-argcomplete run.py)"
-eval "$($HOME/work/infra/infra/ENV/bin/register-python-argcomplete test.py)"
 
 # Autocompletion for the gcloud SDK.
-source "$HOME/local/bin/google-cloud-sdk/completion.zsh.inc"
+source "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
 source /etc/bash_completion.d/g4d
 
 # Autocompletion for fzf.

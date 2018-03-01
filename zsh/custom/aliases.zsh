@@ -1,5 +1,3 @@
-alias     e='emacsclient -t'
-
 # Quicker access to all the various ls modes
 # nicer ls, all other alii reference this one
 alias     ls='ls --color=auto -hF --group-directories-first'
