@@ -54,7 +54,6 @@ set number
 set relativenumber
 set mouse=a
 set wildmode=list:longest,full
-set clipboard^=unnamed
 set splitbelow
 set splitright
 set nobinary
