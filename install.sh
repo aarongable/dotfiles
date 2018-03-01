@@ -1,34 +1,25 @@
 #!/bin/sh
 
-# This script sets up the entire dotfiles environment.
+# This script sets up the entire dotfiles environment. It is only expected
+# to be run after the dotfiles repo has been cloned into your location of
+# choice.
 # Note: This script (and entire repo) is only expected to work on Ubuntu.
 
-SAVED_DIR=$PWD
-cd
+# We like the XDG_CONFIG standard, so make sure it is set up.
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:=${HOME}/.cache}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=${HOME}/.config}
+export XDG_DATA_HOME=${XDG_DATA_HOME:=${HOME}/.local/share}
 
-# If the repo hasn't been cloned already (i.e. you trust me and are running
-# this script blindly after curling it according to the instructions in the
-# README... you silly person, you) then do so now.
-
-if [ ! -d dotfiles ]
-then
-  sudo apt-get install git
-  git clone --recursive https://github.com/aarongable/dotfiles
-fi
-
-cd dotfiles
+# Find the location of this file and the dotfile repo directory.
+DOTFILES=`dirname "$(readlink -f "$0")"`
 
 # Ensure all of the submodules are properly set up
-git submodule init
-git submodule update
+git -C $DOTFILES submodule update --init
 
-# Simply invokes the install script for each section of this repo.
-
-dirs=$(find . -maxdepth 1 -mindepth 1 -type d -not -name '.git' -print)
+# Simply invoke the install script from each section of this repo.
+dirs=$(find $DOTFILES -maxdepth 1 -mindepth 1 -type d -not -name '.git' -print)
 for dir in $dirs
 do
   echo "Installing ${dir}..."
   $dir/install.sh
 done
-
-cd $SAVED_DIR
