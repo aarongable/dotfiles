@@ -1,25 +1,18 @@
 #!/bin/sh
 
+THIS_DIR=`dirname "$(readlink -f "$0")"`
+
 sudo apt-get install zsh autojump
 sudo chsh -s /usr/bin/zsh
 
 # Install the google-cloud-sdk. Make sure to install in in $HOME/.local/share/
 curl https://sdk.cloud.google.com | bash
 
-mkdir -p ~/dotfiles/zsh/oh-my-zsh/custom/themes
+ln -sfT $THIS_DIR/bootstrap ~/.zshenv
 
-ln -sfT ~/dotfiles/zsh/bootstrap ~/.zshenv
+ln -sfT $THIS_DIR/zshenv $XDG_CONFIG_HOME/zsh/.zshenv
+ln -sfT $THIS_DIR/zshrc $XDG_CONFIG_HOME/zsh/.zshrc
+ln -sfT $THIS_DIR/zlogin $XDG_CONFIG_HOME/zsh/.zlogin
 
-ln -sfT ~/dotfiles/zsh/zshenv ~/.zshenv
-ln -sfT ~/dotfiles/zsh/zshrc ~/.zshrc
-ln -sfT ~/dotfiles/zsh/zlogin ~/.zlogin
-ln -sfT ~/dotfiles/zsh/oh-my-zsh ~/.oh-my-zsh
-for z in `ls ~/dotfiles/zsh/custom/*.zsh`; do
-  ln -sfT ~/dotfiles/zsh/custom/$z ~/.oh-my-zsh/custom/$(basename $z)
-done
-for t in `ls ~/dotfiles/zsh/custom/themes`; do
-  ln -sfT ~/dotfiles/zsh/custom/themes/$t ~/.oh-my-zsh/custom/themes/$t
-done
-for p in `ls ~/dotfiles/zsh/custom/plugins`; do
-  ln -sfT ~/dotfiles/zsh/custom/plugins/$p ~/.oh-my-zsh/custom/plugins/$p
-done
+ln -sfT $THIS_DIR/custom $XDG_DATA_HOME/zsh/custom
+ln -sfT $THIS_DIR/oh-my-zsh $XDG_DATA_HOME/zsh/oh-my-zsh

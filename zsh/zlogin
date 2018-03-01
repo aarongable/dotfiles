@@ -1,9 +1,3 @@
-# xcompmgr_pid=`ps -o pid= -C xcompmgr`
-# if [[ $? -ne 0 ]]; then
-#   nohup xcompmgr -a > /dev/null &
-#   hsetroot -solid "#2C001E"
-# fi
-
 tmux_pid=`ps -o pid= -C tmux`
 if [[ $? -ne 0 ]]; then
   hsetroot -solid "#2C001E"
