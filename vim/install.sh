@@ -3,7 +3,7 @@
 THIS_DIR=`dirname "$(readlink -f "$0")"`
 
 # Use neovim because it's the future now.
-sudo apt-get install nvim
+sudo apt-get install neovim
 sudo update-alternatives --set editor /usr/bin/nvim
 sudo update-alternatives --set vim /usr/bin/nvim
 
@@ -19,7 +19,7 @@ mkdir -p $XDG_CACHE_HOME/nvim/swap
 mkdir -p $XDG_CACHE_HOME/nvim/undo
 
 # Install YouCompleteMe dependencies.
-sudo apt-get install cmake pip
+sudo apt-get install cmake python-pip
 pip install --user neovim
 
 nvim +PlugInstall
