@@ -1,15 +1,15 @@
 #!/bin/bash
 # Intended for use with Ubuntu 12.04 LTS.
 
-sudo apt-get install xmonad xmobar gnome-panel suckless-tools
+THIS_DIR=`dirname "$(readlink -f "$0")"`
 
-mkdir -p ~/.xmonad
-ln -sfT ~/dotfiles/xmonad/xmonad.hs ~/.xmonad/xmonad.hs
-ln -sfT ~/dotfiles/xmonad/xmobarrc ~/.xmobarrc
+sudo apt-get install xmonad xmobar suckless-tools
 
-rm -f ~/.xmonad/xmonad-x86_64-linux
+mkdir -p $XDG_CONFIG_HOME/xmonad
+ln -sfT $THIS_DIR/xmonad.hs $XDG_CONFIG_HOME/xmonad/xmonad.hs
+mkdir -p $XDG_CONFIG_HOME/xmobar
+ln -sfT $THIS_DIR/xmobarrc $XDG_CONFIG_HOME/xmobar/xmobarrc
+
 xmonad --recompile
 
 # Log out -> select Xmonad -> log in.
-
-ln -sfT ~/dotfiles/xmonad/xession ~/.xsession

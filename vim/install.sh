@@ -1,23 +1,22 @@
 #!/bin/sh
 
+THIS_DIR=`dirname "$(readlink -f "$0")"`
+
 # Use neovim because it's the future now.
 sudo apt-get install nvim
 sudo update-alternatives --set editor /usr/bin/nvim
 sudo update-alternatives --set vim /usr/bin/nvim
 
-# nvim config lives in $XDG_CONFIG_HOME/nvim/.
-mkdir -p ~/.config/nvim
-ln -sfT ~/dotfiles/vim/init.vim ~/.config/nvim/init.vim
+mkdir -p $XDG_CONFIG_HOME/nvim
+ln -sfT $THIS_DIR/init.vim $XDG_CONFIG_HOME/nvim/init.vim
 
-# nvim plugins live in $XDG_DATA_HOME/nvim/site/.
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-mkdir -p ~/.local/share/nvim/site/plugged
+mkdir -p $XDG_DATA_HOME/nvim/site/plugged
 
-# nvim throwaway data lives in $XDG_CACHE_HOME/nvim/.
-mkdir -p ~/.cache/nvim/backup
-mkdir -p ~/.cache/nvim/swap
-mkdir -p ~/.cache/nvim/undo
+mkdir -p $XDG_CACHE_HOME/nvim/backup
+mkdir -p $XDG_CACHE_HOME/nvim/swap
+mkdir -p $XDG_CACHE_HOME/nvim/undo
 
 # Install YouCompleteMe dependencies.
 sudo apt-get install cmake pip
