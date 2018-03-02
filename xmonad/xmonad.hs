@@ -57,7 +57,7 @@ main = do
   xmobarPipe <- spawnPipe myXmobar
   xmonad $ docks ( myConfig numScreens xmobarPipe )
 
-myConfig n h = withNavigation2DConfig myNavigation2DConfig $ defaultConfig
+myConfig n h = withNavigation2DConfig myNavigation2DConfig $ def
   -- In the same order as they are defined in the default config.hs.
   { borderWidth         = myBorderWidth
   , workspaces          = myWorkspaces n
@@ -136,7 +136,7 @@ myShifter n k = windows $ W.shift (show $ calcOffset 0 k)
 myLayoutHook = avoidStruts ( twocol ||| tworow  ||| threecol ||| tabbed )
     where twocol = renamed [Replace "twocol"] $ ResizableTall 1 (3/100) (1/2) []
           tworow = renamed [Replace "tworow"] $ Mirror twocol
-          threecol = renamed [Replace "threecol"] $ ThreeCol 1 (3/100) (1/3)
+          threecol = renamed [Replace "threecol"] $ ThreeColMid 1 (3/100) (1/2)
           tabbed = renamed [Replace "tabbed"] $ simpleTabbed
 
 
@@ -149,7 +149,7 @@ myManageHook = composeAll $ reverse
 
 
 -- | Desktop integration
-myHandleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
+myHandleEventHook = handleEventHook def <+> fullscreenEventHook
 
 
 -- | Xmobar
@@ -157,7 +157,7 @@ myXmobar = "xmobar"  -- Uses default config file at ~/.xmobarrc.
 myLogHook h = dynamicLogWithPP $ myPP h
 
 -- Very similar to default, but with longer truncation for title.
-myPP h = defaultPP
+myPP h = def
   { ppCurrent         = xmobarColor "yellow" "" . wrap "[" "]"
   , ppVisible         = xmobarColor "orange" "" . wrap "(" ")"
   , ppHidden          = id
@@ -175,7 +175,7 @@ myPP h = defaultPP
 
 
 -- | Keyboard shortcuts
-myNavigation2DConfig = defaultNavigation2DConfig
+myNavigation2DConfig = def
   { layoutNavigation = [("tabbed", centerNavigation)]
   }
 
