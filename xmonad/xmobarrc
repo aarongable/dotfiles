@@ -1,5 +1,5 @@
-Config { font = "xft:DejaVu Sans Mono for Powerline-10"
-       , bgColor = "black"
+Config { font = "xft:DejaVu Sans Mono for Powerline Book:size=4"
+       , bgColor = "#2C001E"
        , fgColor = "grey"
        , position = Top
        , lowerOnStart = True
