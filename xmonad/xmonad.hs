@@ -136,7 +136,7 @@ myShifter n k = windows $ W.shift (show $ calcOffset 0 k)
 myLayoutHook = avoidStruts ( twocol ||| tworow  ||| threecol ||| tabbed )
     where twocol = renamed [Replace "twocol"] $ ResizableTall 1 (3/100) (1/2) []
           tworow = renamed [Replace "tworow"] $ Mirror twocol
-          threecol = renamed [Replace "threecol"] $ ThreeColMid 1 (3/100) (1/2)
+          threecol = renamed [Replace "threecol"] $ ThreeColMid 1 (3/100) (2/3)
           tabbed = renamed [Replace "tabbed"] $ simpleTabbed
 
 
@@ -210,7 +210,7 @@ myKeys n = \conf -> mkKeymap conf $
   ++
   [ -- Layout Management
     ("M-<Space>",       sendMessage NextLayout)
-  , ("M-S-<Space>",     sendMessage FirstLayout)
+  , ("M-S-<Space>",     setLayout $ XMonad.layoutHook conf)
   , ("M--",             sendMessage (IncMasterN (-1)))
   , ("M-=",             sendMessage (IncMasterN 1))
   , ("M-S--",           sendMessage Shrink)
