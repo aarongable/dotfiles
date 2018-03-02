@@ -55,7 +55,7 @@ import qualified XMonad.Util.ExtensibleState as XS
 main = do
   numScreens <- countScreens
   xmobarPipe <- spawnPipe myXmobar
-  xmonad $ myConfig numScreens xmobarPipe
+  xmonad $ docks ( myConfig numScreens xmobarPipe )
 
 myConfig n h = withNavigation2DConfig myNavigation2DConfig $ defaultConfig
   -- In the same order as they are defined in the default config.hs.
@@ -146,8 +146,6 @@ myManageHook = composeAll $ reverse
   , appName =? "gnubby_ssh_prompt" --> doFloat
   , manageDocks
   ]
-
-chatPlacement = withGaps (1,32,1,32) (smart (1,1))
 
 
 -- | Desktop integration
