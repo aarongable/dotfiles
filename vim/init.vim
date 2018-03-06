@@ -3,7 +3,7 @@ call plug#begin('~/.local/share/nvim/site/plugged/')
 
 Plug 'Raimondi/delimitMate'
 Plug 'Valloric/YouCompleteMe', {'do': './install.py --go-completer'}
-Plug 'aarongable/vim-python-indent'
+Plug 'aarongable/vim-python-indent', {'branch': 'chromium-style'}
 Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
