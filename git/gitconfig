@@ -23,4 +23,4 @@
 [transfer]
   fsckobjects = true
 [http]
-  cookiefile = ~/.config/git/cookies
+  cookiefile = ~/.local/share/git/cookies
