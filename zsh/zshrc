@@ -72,13 +72,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-# If ssh keys haven't been added to the ssh-agent already, do so now.
-# Due to $ZSH/custom/sshag.zsh, they will be persistent across all other
-# terminals spawned after this one.
-# if [[ $(ssh-add -l) == "The agent has no identities." ]] ; then
-#   ssh-add $HOME/.ssh/id_rsa
-# fi
-
 # Vim FTW.
 bindkey -a 'v' edit-command-line
 bindkey '' backward-delete-char
