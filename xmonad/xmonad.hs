@@ -220,11 +220,12 @@ myKeys n = \conf -> mkKeymap conf $
   ++
   [ -- Applications
     ("M-<Return>",      spawn $ XMonad.terminal conf)
+  , ("M-p",             spawn $ "code")
   , ("M-S-<Return>",    spawn $ "dmenu_run -l 4 -nb '#2C001E' -nf '#AEA79F'"
                                            ++ " -sb '#AEA79F' -sf '#2C001E'"
                                            ++ " -fn 'DejaVu Sans Mono Book'")
   , ("<F12>",           spawn $ "i3lock -c 2C001E")
-  , ("<Print>",         spawn $ "gnome-screenshot --interactive")
+  , ("<Print>",         spawn $ "gnome-screenshot --area")
   ]
   ++
   [ -- XMonad system
