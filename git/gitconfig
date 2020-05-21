@@ -13,7 +13,7 @@
   cp    = cherry-pick -x
   root  = checkout origin/master
   # These are all great git helper commands from Chromium's depot_tools
-  reup  = rebase-update
+  reup  = !git root && git cl archive && git rebase-update
   udiff = upstream-diff
   bmap  = map-branches -vvv
   nb    = new-branch
