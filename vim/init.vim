@@ -8,7 +8,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ehamberg/vim-cute-python'
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'fatih/vim-go', {'tag': '*', 'do': ':GoInstallBinaries'}
 Plug 'google/vim-maktaba'
 Plug 'google/vim-glaive'
 Plug 'google/vim-syncopate'
