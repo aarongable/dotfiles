@@ -32,16 +32,11 @@ if [[ ! "$PATH" == *$HOME/.local/share/fzf/bin* ]]; then
   export PATH="$PATH:$HOME/.local/share/fzf/bin"
 fi
 
-# Update PATH for depot_tools, as long as I work on Chromium.
-PATH="$HOME/.local/share/depot_tools:$PATH"
-MANPATH=":$HOME/.local/share/depot_tools/docs"
-
-# Set up GOPATH, assuming that I have a /work drive.
+# Set up GOPATH
 if [ -z "$GOPATH" ]; then
-  GOPATH="/work/go"
+  GOPATH="$HOME/dev/go"
   PATH="$GOPATH/bin:$PATH"
 fi
 
 export GOPATH
-export MANPATH
 export PATH

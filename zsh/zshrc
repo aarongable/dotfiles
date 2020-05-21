@@ -99,7 +99,6 @@ bashcompinit
 
 # Autocompletion for the gcloud SDK.
 source "$HOME/.local/share/google-cloud-sdk/completion.zsh.inc"
-source /etc/bash_completion.d/g4d
 
 # Autocompletion for fzf.
 [[ $- == *i* ]] && source "$HOME/.local/share/fzf/shell/completion.zsh" 2> /dev/null
