@@ -2,10 +2,11 @@
 
 THIS_DIR=`dirname "$(readlink -f "$0")"`
 
-# Use neovim because it's the future now.
-sudo apt-get install neovim
-sudo update-alternatives --set editor /usr/bin/nvim
-sudo update-alternatives --set vim /usr/bin/nvim
+# Use vscode and neovim because they're the future now.
+sudo snap install code --classic
+sudo snap install --beta nvim --classic
+sudo update-alternatives --set editor /snap/nvim
+sudo update-alternatives --set vim /snap/nvim
 
 mkdir -p $XDG_CONFIG_HOME/nvim
 ln -sfT $THIS_DIR/init.vim $XDG_CONFIG_HOME/nvim/init.vim
