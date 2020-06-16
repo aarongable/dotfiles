@@ -20,7 +20,7 @@
   tb    = new-branch --upstream_current
 [push]
   default = upstream
-[transfer]
-  fsckobjects = true
+# [transfer]
+#   fsckobjects = true
 [http]
   cookiefile = ~/.local/share/git/cookies
