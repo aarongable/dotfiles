@@ -25,11 +25,7 @@ alias     ga='git commit -a --amend'
 alias     gb='git bmap'
 
 # start a new named tmux session
-alias     ts='tmux -2 new-session -s'
-# attach to an old session
-alias     ta='tmux -2 attach-session -t'
-# steal a session for where it is attached elsewhere
-alias     td='tmux -2 attach-session -d -t'
+alias     ts='tmux -2 new-session -A -s'
 # attach a new tmux session to the windows from the named one
 alias     tt='tmux -2 new-session -t'
 # list all currently running tmux sessions
