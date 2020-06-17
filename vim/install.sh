@@ -5,8 +5,8 @@ THIS_DIR=`dirname "$(readlink -f "$0")"`
 # Use vscode and neovim because they're the future now.
 sudo snap install code --classic
 sudo snap install --beta nvim --classic
-sudo update-alternatives --set editor /snap/nvim
-sudo update-alternatives --set vim /snap/nvim
+sudo snap alias nvim vim
+sudo snap alias nvim editor
 
 mkdir -p $XDG_CONFIG_HOME/nvim
 ln -sfT $THIS_DIR/init.vim $XDG_CONFIG_HOME/nvim/init.vim

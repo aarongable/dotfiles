@@ -19,8 +19,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
@@ -106,8 +106,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 
 let g:NERDSpaceDelims = 1             " Put a space after NERDComments.
-autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 nmap <leader>b :BufExplorer<CR>
 nmap <leader>ls :NERDTreeToggle<CR>
 nmap <leader>t :TagbarToggle<CR>
