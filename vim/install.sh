@@ -19,7 +19,7 @@ mkdir -p $XDG_CACHE_HOME/nvim/swap
 mkdir -p $XDG_CACHE_HOME/nvim/undo
 
 # Install YouCompleteMe dependencies.
-sudo apt-get install cmake python-pip
-pip install --user neovim
+sudo apt install build-essential cmake pipenv
+pip install --user --upgrade pynvim
 
 nvim +PlugInstall

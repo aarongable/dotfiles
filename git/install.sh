@@ -2,7 +2,7 @@
 
 THIS_DIR=`dirname "$(readlink -f "$0")"`
 
-sudo apt-get install git
+sudo apt install git
 
 mkdir -p $XDG_CONFIG_HOME/git/
 ln -sfT $THIS_DIR/gitconfig $XDG_CONFIG_HOME/git/config
