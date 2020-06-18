@@ -3,7 +3,7 @@
 THIS_DIR=`dirname "$(readlink -f "$0")"`
 
 sudo apt install curl zsh autojump hsetroot
-sudo chsh -s /usr/bin/zsh
+chsh -s /usr/bin/zsh
 
 # Install the google-cloud-sdk. Make sure to install in in $HOME/.local/share/
 curl https://sdk.cloud.google.com | bash
