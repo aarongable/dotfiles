@@ -38,9 +38,6 @@ Plug 'zaiste/tmux.vim'
 " syntax enable
 call plug#end()
 
-call glaive#Install()
-Glaive syncopate plugin[mappings]
-
 """ BASICS """
 let mapleader = " "
 
@@ -106,9 +103,12 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 
 let g:NERDSpaceDelims = 1             " Put a space after NERDComments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-nmap <leader>b :BufExplorer<CR>
-nmap <leader>ls :NERDTreeToggle<CR>
-nmap <leader>t :TagbarToggle<CR>
+
+if !exists(g:vscode) {
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+  nmap <leader>b :BufExplorer<CR>
+  nmap <leader>ls :NERDTreeToggle<CR>
+  nmap <leader>t :TagbarToggle<CR>
+}
