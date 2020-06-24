@@ -44,5 +44,5 @@ fi
 export PATH
 
 # Necessary for https://github.com/FiloSottile/yubikey-agent
-export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/yubikey_agent"
 
