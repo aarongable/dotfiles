@@ -9,9 +9,6 @@ Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ehamberg/vim-cute-python'
 Plug 'fatih/vim-go', {'tag': '*', 'do': ':GoInstallBinaries'}
-Plug 'google/vim-maktaba'
-Plug 'google/vim-glaive'
-Plug 'google/vim-syncopate'
 Plug 'gregsexton/gitv'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', {'dir': '~/.local/share/fzf', 'do': './install --bin'}
@@ -104,11 +101,9 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 
 let g:NERDSpaceDelims = 1             " Put a space after NERDComments.
 
-if !exists(g:vscode) {
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-  nmap <leader>b :BufExplorer<CR>
-  nmap <leader>ls :NERDTreeToggle<CR>
-  nmap <leader>t :TagbarToggle<CR>
-}
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+nmap <leader>b :BufExplorer<CR>
+nmap <leader>ls :NERDTreeToggle<CR>
+nmap <leader>t :TagbarToggle<CR>

@@ -24,6 +24,9 @@ alias     gc='git commit -a'
 alias     ga='git commit -a --amend'
 alias     gb='git bmap'
 
+# Open the named file in the current vscode window
+alias     c='code -r'
+
 # start a new named tmux session
 alias     ts='tmux -2 new-session -A -s'
 # attach a new tmux session to the windows from the named one

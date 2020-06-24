@@ -5,6 +5,7 @@
   path = ~/.config/git/customconfig
 [core]
   pager = less -FRSX
+  editor = code --wait
 [color]
   ui = true
 [alias]
