@@ -37,6 +37,10 @@ if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
   PATH="$PATH:/usr/local/go/bin"
 fi
 
+if [[ ! "$PATH" == *$HOME/.local/share/depot_tools* ]]; then
+  PATH="$PATH:$HOME/.local/share/depot_tools"
+fi
+
 export PATH
 
 # Necessary for https://github.com/FiloSottile/yubikey-agent
