@@ -26,6 +26,7 @@ alias     gb='git bmap'
 
 # Open the named file in the current vscode window
 alias     c='code -r'
+alias     v='vim -O'
 
 # start a new named tmux session
 alias     ts='tmux -2 new-session -A -s'
@@ -33,9 +34,6 @@ alias     ts='tmux -2 new-session -A -s'
 alias     tt='tmux -2 new-session -t'
 # list all currently running tmux sessions
 alias     tls='tmux -2 list-sessions'
-
-# always use vertical splits
-alias     vim='vim -O'
 
 # ack-grep is a silly name
 alias     ack=ack-grep

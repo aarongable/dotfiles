@@ -44,5 +44,8 @@ fi
 export PATH
 
 # Necessary for https://github.com/FiloSottile/yubikey-agent
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/yubikey_agent"
+export SSH_AUTH_SOCK="/run/user/1000/yubikey_agent"
+
+# Necessary for rootless docker
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
