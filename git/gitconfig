@@ -1,6 +1,7 @@
 # vim: ft=gitconfig:
 [user]
   name = Aaron Gable
+  signingkey = 572D17E83B932BE52E3D408107AFA0DD0644633A
 [include]
   path = ~/.config/git/customconfig
 [core]
@@ -12,11 +13,12 @@
   ca    = commit -a --amend -C HEAD
   co    = checkout
   cp    = cherry-pick -x
-  root  = checkout origin/master
+  root  = !git checkout $(git rev-parse --abbrev-ref origin/HEAD)
+  up    = fetch origin --prune
   # These are all great git helper commands from Chromium's depot_tools
   reup  = !git root && git cl archive && git rebase-update
   udiff = upstream-diff
-  bmap  = map-branches -vvv
+  b     = map-branches -v
   nb    = new-branch
   tb    = new-branch --upstream_current
 [push]
