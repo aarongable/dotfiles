@@ -93,7 +93,9 @@ ubuntuForegroundColor = "#AEA79F"  -- "Warm grey"
 
 
 -- | Startup
-myStartupHook = return ()
+-- Unfortunately xmonad runs before $XDG_DATA_HOME is populated, so we have to
+-- hardcode this path here.
+myStartupHook = spawn "feh --bg-fill /home/aaron/.local/share/xmonad/wallpaper.jpg"
 
 
 -- | Workspaces
@@ -224,7 +226,7 @@ myKeys n = \conf -> mkKeymap conf $
   , ("M-<Return>",      spawn $ "dmenu_run -l 4 -nb '#2C001E' -nf '#AEA79F'"
                                            ++ " -sb '#AEA79F' -sf '#2C001E'"
                                            ++ " -fn 'DejaVu Sans Mono Book'")
-  , ("<F12>",           spawn $ "i3lock -c 2C001E")
+  , ("M-<Esc>",         spawn $ "i3lock -c 2C001E")
   , ("<Print>",         spawn $ "gnome-screenshot --area")
   ]
   ++
