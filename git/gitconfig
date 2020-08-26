@@ -1,29 +1,31 @@
 # vim: ft=gitconfig:
 [user]
-  name = Aaron Gable
-  signingkey = 572D17E83B932BE52E3D408107AFA0DD0644633A
+	name = Aaron Gable
+	signingkey = 572D17E83B932BE52E3D408107AFA0DD0644633A
 [include]
-  path = ~/.config/git/customconfig
+	path = ~/.config/git/customconfig
 [core]
-  pager = less -FRSX
-  editor = code --wait
+	pager = less -FRSX
+	editor = code --wait
 [color]
-  ui = true
+	ui = true
 [alias]
-  ca    = commit -a --amend -C HEAD
-  co    = checkout
-  cp    = cherry-pick -x
-  root  = !git checkout $(git rev-parse --abbrev-ref origin/HEAD)
-  up    = fetch origin --prune
-  # These are all great git helper commands from Chromium's depot_tools
-  reup  = !git root && git cl archive && git rebase-update
-  udiff = upstream-diff
-  b     = map-branches -v
-  nb    = new-branch
-  tb    = new-branch --upstream_current
+	ca    = commit -a --amend -C HEAD
+	co    = checkout
+	cp    = cherry-pick -x
+	root  = !git checkout $(git rev-parse --abbrev-ref origin/HEAD)
+	up    = fetch origin --prune
+	# These are all great git helper commands from Chromium's depot_tools
+	reup  = !git root && git cl archive && git rebase-update
+	udiff = upstream-diff
+	b     = map-branches -v
+	nb    = new-branch
+	tb    = new-branch --upstream_current
 [push]
-  default = upstream
+	default = upstream
 # [transfer]
-#   fsckobjects = true
+#	 fsckobjects = true
 [http]
-  cookiefile = ~/.local/share/git/cookies
+	cookiefile = ~/.local/share/git/cookies
+[advice]
+	detachedHead = false
