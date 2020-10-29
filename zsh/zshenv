@@ -37,6 +37,13 @@ if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
   PATH="$PATH:/usr/local/go/bin"
 fi
 
+# Set up rust
+if [[ ! "$PATH" == */cargo/bin* ]]; then
+  PATH="$PATH:/home/aaron/.local/share/cargo/bin"
+  export CARGO_HOME=$XDG_DATA_HOME/cargo
+  export RUSTUP_HOME=$XDG_DATA_HOME/rustup
+fi
+
 if [[ ! "$PATH" == *$HOME/.local/share/depot_tools* ]]; then
   PATH="$PATH:$HOME/.local/share/depot_tools"
 fi
