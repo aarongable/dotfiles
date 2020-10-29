@@ -228,7 +228,8 @@ myKeys n = \conf -> mkKeymap conf $
                                            ++ " -sb '#AEA79F' -sf '#2C001E'"
                                            ++ " -fn 'DejaVu Sans Mono Book'")
   , ("M-<Esc>",         spawn $ "i3lock -c 2C001E")
-  , ("<Print>",         spawn $ "gnome-screenshot --area")
+  , ("<Print>",         spawn $ "/home/aaron/.local/bin/screenshot.sh")
+  , ("S-<Print>",         spawn $ "gnome-screenshot --area")
   ]
   ++
   [ -- Media
