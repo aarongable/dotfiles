@@ -1,8 +1,8 @@
 # Remember the last 5000 commands
-HISTSIZE=5000
-SAVEHIST=5000
-HISTFILE=~/.zsh_history
-setopt appendhistory inc_append_history share_history
+HISTSIZE=10000
+SAVEHIST=1000000
+HISTFILE=$XDG_CACHE_HOME/zsh/history
+setopt share_history
 
 # Have zsh tell you when background jobs finish
 setopt notify
