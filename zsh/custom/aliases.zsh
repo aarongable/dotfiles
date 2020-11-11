@@ -23,6 +23,8 @@ alias     rsync='rsync -vhuP'
 alias     gc='git commit -a'
 alias     ga='git commit -a --amend'
 alias     gb='git bmap'
+alias     gu='git fetch --prune origin'
+alias     gp='git push origin HEAD'
 
 # Open the named file in the current vscode window
 alias     c='code -r'
@@ -38,6 +40,5 @@ alias     tls='tmux -2 list-sessions'
 # ack-grep is a silly name
 alias     ack=ack-grep
 
-alias menu='/google/data/ro/projects/menu/menu.par --highlight_allergens=vegetarian --default_locations=mtv --max_terminal_width=0'
-alias dinner='menu --max_cafes_to_show=0 nourish,charlies,noname,moma,crave'
-alias pa='prodaccess --chromegolo_ssh'
+alias     btu='docker-compose run --use-aliases boulder ./test.sh --unit'
+alias     bti='docker-compose run --use-aliases boulder ./test.sh --integration'
