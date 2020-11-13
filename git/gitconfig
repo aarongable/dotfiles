@@ -13,10 +13,9 @@
 	ca    = commit -a --amend -C HEAD
 	co    = checkout
 	cp    = cherry-pick -x
-	root  = !git checkout $(git rev-parse --abbrev-ref origin/HEAD)
-	up    = fetch origin --prune
-	# These are all great git helper commands from Chromium's depot_tools
-	reup  = !git root && git cl archive && git rebase-update
+	root  = ! git checkout $(git rev-parse --abbrev-ref origin/HEAD)
+	# These are all great git helper commands from Chromium's depot_tools.
+	up    = push origin HEAD
 	udiff = upstream-diff
 	b     = map-branches -v
 	nb    = new-branch

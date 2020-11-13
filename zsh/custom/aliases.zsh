@@ -20,12 +20,6 @@ alias     man='nocorrect man'
 alias     git='nocorrect git'
 alias     rsync='rsync -vhuP'
 
-alias     gc='git commit -a'
-alias     ga='git commit -a --amend'
-alias     gb='git bmap'
-alias     gu='git fetch --prune origin'
-alias     gp='git push origin HEAD'
-
 # Open the named file in the current vscode window
 alias     c='code -r'
 alias     v='vim -O'
