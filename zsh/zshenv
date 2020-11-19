@@ -1,47 +1,23 @@
-# ~/.zshenv: executed by the command interpreter for all shells
+### Updates to $PATH:
 
-# Fix gnome-terminal color support
-if [[ "$COLORTERM" == "gnome-terminal" ]] ; then
-  if [[ "$TERM" == "xterm" ]] ; then
-    TERM="xterm-256color"
-  elif [[ "$TERM" == "screen" ]] ; then
-    TERM="screen-256color"
-  fi
-fi
-
-# Make sure everyone knows I use vim
-EDITOR=`which vim`
-VISUAL=`which vim`
-# # Try using Spacemacs for a while
-# export ALTERNATE_EDITOR=""
-# export EDITOR=emacsclient
-
-######
-# Everything below here must be exported.
-#####
-
+# Misc things outside of /usr/local/bin
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Update PATH for the Google Cloud SDK.
+# Google Cloud SDK
 source "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
 
-# Update PATH for fzf.
-if [[ ! "$PATH" == *$HOME/.local/share/fzf/bin* ]]; then
-  export PATH="$PATH:$HOME/.local/share/fzf/bin"
-fi
-
-# Set up go
+# Golang
 if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
   PATH="$PATH:/usr/local/go/bin"
 fi
 
-# Set up rust
+# Rust
 if [[ ! "$PATH" == */cargo/bin* ]]; then
   PATH="$PATH:/home/aaron/.local/share/cargo/bin"
-  export CARGO_HOME=$XDG_DATA_HOME/cargo
-  export RUSTUP_HOME=$XDG_DATA_HOME/rustup
+  CARGO_HOME=$XDG_DATA_HOME/cargo
+  RUSTUP_HOME=$XDG_DATA_HOME/rustup
 fi
 
 if [[ ! "$PATH" == *$HOME/.local/share/depot_tools* ]]; then
@@ -50,9 +26,19 @@ fi
 
 export PATH
 
+### Everything else
+
+# Save lots of history
+HISTSIZE=10000
+SAVEHIST=1000000
+HISTFILE=$XDG_CACHE_HOME/zsh/history
+
+# Make sure everyone knows I use vim
+EDITOR=`which vim`
+VISUAL=`which vim`
+
 # Necessary for https://github.com/FiloSottile/yubikey-agent
 export SSH_AUTH_SOCK="/run/user/1000/yubikey_agent"
 
 # Necessary for rootless docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-

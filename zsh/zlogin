@@ -1,7 +1,0 @@
-# Not clear if any of this is necessary on Debian.
-# tmux_pid=`ps -o pid= -C tmux`
-# if [[ $? -ne 0 ]]; then
-#   hsetroot -solid "#2C001E"
-#   setxkbmap -option caps:escape
-#   nohup tmux start > /dev/null
-# fi

@@ -1,0 +1,89 @@
+# Core modules
+[cmd_duration]
+disabled = true
+show_notifications = true
+min_time_to_notify = 1000
+[directory]
+truncation_length = 0
+truncation_symbol = "…/"
+[battery]
+disabled = true
+
+# Tools I use
+[docker_context]
+disabled = true
+[git_branch]
+symbol = ""
+[git_commit]
+[git_state]
+[git_status]
+format = '([$staged$modified$untracked]($style) )'
+[gcloud]
+disabled = true
+[hg_branch]
+disabled = true
+
+# Languages I use
+[nodejs]
+disabled = true
+[python]
+disabled = true
+[rust]
+disabled = true
+[golang]
+disabled = true
+
+
+# Things I don't use
+[aws]
+disabled = true
+[cmake]
+disabled = true
+[conda]
+disabled = true
+[crystal]
+disabled = true
+[dart]
+disabled = true
+[dotnet]
+disabled = true
+[elixir]
+disabled = true
+[elm]
+disabled = true
+[erlang]
+disabled = true
+[helm]
+disabled = true
+[java]
+disabled = true
+[julia]
+disabled = true
+[kubernetes]
+disabled = true
+[lua]
+disabled = true
+[nim]
+disabled = true
+[nix_shell]
+disabled = true
+[ocaml]
+disabled = true
+[openstack]
+disabled = true
+[perl]
+disabled = true
+[php]
+disabled = true
+[purescript]
+disabled = true
+[ruby]
+disabled = true
+[singularity]
+disabled = true
+[swift]
+disabled = true
+[terraform]
+disabled = true
+[zig]
+disabled = true

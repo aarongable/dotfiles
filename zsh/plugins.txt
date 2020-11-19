@@ -1,0 +1,3 @@
+ohmyzsh/ohmyzsh path:lib/completion.zsh
+zdharma/fast-syntax-highlighting
+zsh-users/zsh-autosuggestions
