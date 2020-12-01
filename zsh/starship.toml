@@ -8,13 +8,19 @@ truncation_length = 0
 truncation_symbol = "…/"
 [battery]
 disabled = true
+[package]
+disabled = true
 
 # Tools I use
 [docker_context]
 disabled = true
 [git_branch]
 symbol = ""
+only_attached = true
+style = "bold green"
 [git_commit]
+format = "(at [$hash]($style) )"
+style = "bold purple"
 [git_state]
 [git_status]
 format = '([$staged$modified$untracked]($style) )'
