@@ -9,15 +9,16 @@ fi
 source "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
 
 # Golang
-if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
-  PATH="$PATH:/usr/local/go/bin"
+if [[ ! "$PATH" == */go/bin* ]]; then
+  export GOPATH=$XDG_DATA_HOME/go
+  PATH="$PATH:$GOPATH/bin"
 fi
 
 # Rust
 if [[ ! "$PATH" == */cargo/bin* ]]; then
-  PATH="$PATH:/home/aaron/.local/share/cargo/bin"
-  CARGO_HOME=$XDG_DATA_HOME/cargo
-  RUSTUP_HOME=$XDG_DATA_HOME/rustup
+  export CARGO_HOME=$XDG_DATA_HOME/cargo
+  export RUSTUP_HOME=$XDG_DATA_HOME/rustup
+  PATH="$PATH:$CARGO_HOME/bin"
 fi
 
 if [[ ! "$PATH" == *$HOME/.local/share/depot_tools* ]]; then
@@ -41,4 +42,5 @@ VISUAL=`which vim`
 export SSH_AUTH_SOCK="/run/user/1000/yubikey_agent"
 
 # Necessary for rootless docker
+export PATH=$HOME/.local/share/docker-rootless/bin:$PATH
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
