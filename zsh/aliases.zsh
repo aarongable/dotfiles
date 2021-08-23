@@ -16,6 +16,7 @@ alias     cp='nocorrect cp'
 alias     rm='nocorrect rm'        # The nocorrect option keeps the zsh spell checker from
 alias     mkdir='nocorrect mkdir'     # running on any of the arguments passed to the command.
 alias     man='nocorrect man'
+alias     ln='ln -r'  # Always do relative symlinks
 
 alias     git='nocorrect git'
 alias     rsync='rsync -vhuP'
@@ -36,3 +37,5 @@ alias     ack=ack-grep
 
 alias     btu='docker-compose run --use-aliases boulder ./test.sh --unit'
 alias     bti='docker-compose run --use-aliases boulder ./test.sh --integration'
+alias     btun='docker-compose -f docker-compose.yml -f docker-compose.next.yml run --use-aliases boulder ./test.sh --unit'
+alias     btin='docker-compose -f docker-compose.yml -f docker-compose.next.yml run --use-aliases boulder ./test.sh --integration'
