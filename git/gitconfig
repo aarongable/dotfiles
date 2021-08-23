@@ -1,7 +1,7 @@
 # vim: ft=gitconfig:
 [user]
 	name = Aaron Gable
-	signingkey = 572D17E83B932BE52E3D408107AFA0DD0644633A
+	signingkey = 300C3E6C84284B198811E7AFA8DBD380FA866E23
 [include]
 	path = ~/.config/git/customconfig
 [core]
@@ -28,3 +28,5 @@
 	cookiefile = ~/.local/share/git/cookies
 [advice]
 	detachedHead = false
+[init]
+	defaultBranch = main
