@@ -34,8 +34,3 @@ alias     tls='tmux -2 list-sessions'
 
 # ack-grep is a silly name
 alias     ack=ack-grep
-
-alias     btu='docker-compose run --use-aliases boulder ./test.sh --unit'
-alias     bti='docker-compose run --use-aliases boulder ./test.sh --integration'
-alias     btun='docker-compose -f docker-compose.yml -f docker-compose.next.yml run --use-aliases boulder ./test.sh --unit'
-alias     btin='docker-compose -f docker-compose.yml -f docker-compose.next.yml run --use-aliases boulder ./test.sh --integration'

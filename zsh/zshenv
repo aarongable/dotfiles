@@ -39,5 +39,4 @@ VISUAL=`which vim`
 export SSH_AUTH_SOCK="/run/user/1000/yubikey_agent"
 
 # Necessary for rootless docker
-export PATH=$HOME/.local/share/docker-rootless/bin:$PATH
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
