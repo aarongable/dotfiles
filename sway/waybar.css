@@ -37,6 +37,7 @@ window#waybar {
 }
 
 #clock,
+#custom-clock,
 #battery,
 #cpu,
 #memory,

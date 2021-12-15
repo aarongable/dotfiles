@@ -4,12 +4,16 @@
     "height": 24, // Waybar height (to be removed for auto height)
     "modules-left": ["idle_inhibitor", "sway/workspaces"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "pulseaudio#mic", "network", "battery", "clock"],
+    "modules-right": ["pulseaudio", "pulseaudio#mic", "network", "battery", "custom/clock"],
     "clock": {
         "interval": 10,
         "format": "{:%a %b %d %Y %H:%M}",
         "timezone": "America/Los_Angeles",
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "custom/clock": {
+        "exec": "date +'%a %b %d %Y %H:%M'",
+        "interval": 10
     },
     "battery": {
         "states": {
