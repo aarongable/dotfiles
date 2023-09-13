@@ -13,3 +13,6 @@ cat << EOF >> $XDG_CONFIG_HOME/git/customconfig
 [user]
   email = $email
 EOF
+
+sudo apt install yubikey-agent
+systemctl --user enable --now yubikey-agent

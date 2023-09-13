@@ -35,8 +35,8 @@ HISTFILE=$XDG_CACHE_HOME/zsh/history
 EDITOR=`which vim`
 VISUAL=`which vim`
 
-# Necessary for https://github.com/FiloSottile/yubikey-agent
-export SSH_AUTH_SOCK="/run/user/1000/yubikey_agent"
+# Necessary for the ubuntu package of filippo's yubikey-agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/yubikey-agent/yubikey-agent.sock"
 
 # Necessary for rootless docker
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
