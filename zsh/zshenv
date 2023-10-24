@@ -5,9 +5,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Google Cloud SDK
-source "$HOME/.local/share/google-cloud-sdk/path.zsh.inc"
-
 # Golang
 export GOPATH=$XDG_DATA_HOME/go
 PATH="/usr/local/go/bin:$PATH"

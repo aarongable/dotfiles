@@ -49,12 +49,9 @@ bindkey "^[[B" history-search-forward
 # Load antibody's plugin bundle.
 source $XDG_CACHE_HOME/zsh/plugins.zsh
 
-# Autocompletion for the gcloud SDK.
-source "$XDG_DATA_HOME/google-cloud-sdk/completion.zsh.inc"
-
 # Autocompletion and keybindings for fzf.
-[[ $- == *i* ]] && source "$XDG_DATA_HOME/fzf/shell/completion.zsh" 2> /dev/null
-source "$XDG_DATA_HOME/fzf/shell/key-bindings.zsh"
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 # Load autojump.
 source /usr/share/autojump/autojump.zsh
