@@ -10,7 +10,8 @@
 [color]
 	ui = true
 [alias]
-	ca    = commit -a --amend -C HEAD
+	ca    = commit -a --amend --no-edit  # Add the files, keep the message
+	ce    = commit --amend --only        # Edit the message, don't touch files
 	co    = checkout
 	cp    = cherry-pick -x
 	root  = ! git checkout $(git rev-parse --abbrev-ref origin/HEAD)
