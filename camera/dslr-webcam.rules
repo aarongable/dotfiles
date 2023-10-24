@@ -1,0 +1,5 @@
+ACTION=="add",
+SUBSYSTEM=="usb",
+ATTR{idVendor}=="04a9",
+ATTR{idProduct}=="31ea",
+RUN:="/bin/systemctl start dslr-webcam"

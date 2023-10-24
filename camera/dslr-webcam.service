@@ -1,0 +1,13 @@
+[Unit]
+Description=Streams video from a USB DSLR camera to a v4l2loopback virtual video device
+Documentation=https://opensource.com/article/22/12/old-camera-webcam-linux
+StartLimitIntervalSec=0
+
+[Service]
+Type=exec
+ExecStartPre=modprobe v4l2loopback exclusive_caps=1 max_buffers=2 card_label="Virtual Camera"
+ExecStart=sh -c 'gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
+ExecStopPost=modprobe -r v4l2loopback
+Restart=no
+
+[Install]
