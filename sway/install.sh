@@ -3,8 +3,6 @@
 
 THIS_DIR=`dirname "$(readlink -f "$0")"`
 
-sudo apt-add-repository ppa:nschloe/waybar
-sudo apt-add-repository ppa:mmstick76/alacritty
 sudo apt update
 sudo apt install sway dmenu swaybg swayidle swaylock
 sudo apt install waybar fonts-font-awesome mako-notifier
