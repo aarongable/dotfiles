@@ -10,5 +10,7 @@ sudo apt install v4l2loopback-dkms v4l2loopback-utils gphoto2 ffmpeg
 sudo cp -f $THIS_DIR/dslr-webcam.service /etc/systemd/system/dslr-webcam.service
 sudo systemctl enable dslr-webcam
 
-# Create the udev rule that starts the systemd service when the camera connects
+# Create the udev rule that starts the systemd service when the camera connects.
+# It actually just creates a dev-dslr.device systemd target, but that's enough
+# to trigger the WantedBy stanza of the dslr-webcam service.
 sudo ln -sfT $THIS_DIR/dslr-webcam.rules /etc/udev/rules.d/35-dslr-webcam.rules
