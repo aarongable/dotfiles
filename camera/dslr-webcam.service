@@ -2,6 +2,8 @@
 Description=Streams video from a USB DSLR camera to a v4l2loopback virtual video device
 Documentation=https://opensource.com/article/22/12/old-camera-webcam-linux
 StartLimitIntervalSec=0
+BindsTo=dev-dslr.device
+After=dev-dslr.device
 
 [Service]
 Type=exec
@@ -11,3 +13,4 @@ ExecStopPost=modprobe -r v4l2loopback
 Restart=no
 
 [Install]
+WantedBy=dev-dslr.device

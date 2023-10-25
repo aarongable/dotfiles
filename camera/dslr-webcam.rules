@@ -1,5 +1,8 @@
+# When usb device 04a9:31ea is detected, create a systemd target named
+# "dev-dslr.device".
 ACTION=="add",
 SUBSYSTEM=="usb",
 ATTR{idVendor}=="04a9",
 ATTR{idProduct}=="31ea",
-RUN:="/bin/systemctl start dslr-webcam"
+SYMLINK+="dslr",
+TAG+="systemd"
