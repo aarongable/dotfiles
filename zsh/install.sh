@@ -4,6 +4,7 @@ THIS_DIR=`dirname "$(readlink -f "$0")"`
 
 sudo apt install curl zsh autojump fzf bat
 chsh -s /usr/bin/zsh
+sudo ln -sfT /usr/bin/batcat ~/.local/bin/bat
 
 # Install antibody to manage zsh plugins.
 curl -sfL git.io/antibody | sh -s - -b ~/.local/bin
