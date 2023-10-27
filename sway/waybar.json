@@ -1,19 +1,34 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
+    "height": 32, // Waybar height (to be removed for auto height)
     "modules-left": ["idle_inhibitor", "sway/workspaces"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "pulseaudio#mic", "network", "battery", "custom/clock"],
+    "modules-right": ["pulseaudio", "pulseaudio#mic", "network", "battery", "clock", "custom/swaync"],
     "clock": {
         "interval": 10,
         "format": "{:%a %b %d %Y %H:%M}",
-        "timezone": "America/Los_Angeles",
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+        "timezone": "America/Los_Angeles"
     },
-    "custom/clock": {
-        "exec": "date +'%a %b %d %Y %H:%M'",
-        "interval": 10
+    "custom/swaync": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "none": "󰂜",
+            "notification": "󰅸",
+            "dnd-none": "󰪑",
+            "dnd-notification": "󰪑",
+            "inhibited-none": "󰂜",
+            "inhibited-notification": "󰅸",
+            "dnd-inhibited-none": "󰪑",
+            "dnd-inhibited-notification": "󰪑"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
     "battery": {
         "states": {
@@ -22,53 +37,33 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
     },
     "network": {
-        "format-wifi": "{essid} ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format": "",
+        "format-wifi": "{essid} 󰖩"
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰝟  {volume}%",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "on-click": "pavucontrol",
+        "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "pulseaudio#mic": {
         "format": "{format_source}",
         "format-source": " {volume}%",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
+        "format-source-muted": " {volume}%",
+        "on-click": "pavucontrol",
+        "on-click-middle": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     },
     "idle_inhibitor": {
       "format": "{icon}",
       "format-icons": {
-        "activated": "",
-        "deactivated": ""
+        "activated": "󰿆",
+        "deactivated": "󰌾"
       }
     }
 }
