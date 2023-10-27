@@ -4,7 +4,8 @@
 THIS_DIR=`dirname "$(readlink -f "$0")"`
 
 sudo apt update
-sudo apt install sway dmenu swaybg swayidle swaylock
+sudo apt install sway swaybg swayidle swaylock
+sudo apt install fuzzel
 sudo apt install waybar fonts-font-awesome sway-notification-center
 sudo apt install brightnessctl pavucontrol
 sudo apt install wl-clipboard grim slurp jq
@@ -23,6 +24,9 @@ ln -sfT $THIS_DIR/swaylock.config $XDG_CONFIG_HOME/swaylock/config
 mkdir -p $XDG_CONFIG_HOME/swaync
 ln -sfT $THIS_DIR/swaync.json $XDG_CONFIG_HOME/swaync/config.json
 ln -sfT $THIS_DIR/swaync.css $XDG_CONFIG_HOME/swaync/style.json
+
+mkdir -p $XDG_CONFIG_HOME/fuzzel
+ln -sfT $THIS_DIR/fuzzel.ini $XDG_CONFIG_HOME/fuzzel/fuzzel.ini
 
 mkdir -p $XDG_DATA_HOME/sway
 ln -sfT $THIS_DIR/wallpaper.jpg $XDG_DATA_HOME/sway/wallpaper.jpg
